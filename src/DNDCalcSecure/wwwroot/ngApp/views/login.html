@@ -1,0 +1,39 @@
+<!--<fieldset>
+    <legend>Login with a Social Provider</legend>
+
+    <ul>
+        <li ng-repeat="externalLogin in account.externalLogins">
+            <a target="_self" href="/api/account/ExternalLogin?provider={{externalLogin.authenticationScheme}}&returnUrl=/">{{externalLogin.displayName}}</a>
+        </li>
+    </ul>
+
+</fieldset>-->
+
+<center>
+    <fieldset>
+        <ul id="loginerrors">
+            <li ng-repeat="error in controller.validationMessages">
+                {{error}}
+            </li>
+        </ul>
+        <form ng-submit="controller.login()" name="loginForm" novalidate>
+            <div>
+                <label class="inputlabel"><u>Username</u></label>
+                <input class="form-control logininput" name="username" ng-model="controller.loginUser.email" style="text-align:center;" maxlength="10" ng-required="true"/>
+                <span ng-show="loginForm.username.$touched && loginForm.username.$error.required" class="error">
+                    enter a username
+                </span>
+            </div>
+            <div>
+                <label class="inputlabel"><u>Password</u></label>
+                <input class="form-control logininput" name="password" type="password" ng-model="controller.loginUser.password" ng-focus="controller.usernameCheck(controller.loginUser.email)" style="text-align:center;" maxlength="20" ng-required="true"/>
+                <span ng-show="loginForm.password.$touched && loginForm.password.$error.required" class="error">
+                    enter a password
+                </span>
+            </div>
+            <input class="btn btn-default" type="submit" value="Login" id="loginbutton" ng-disabled="loginForm.$invalid" /><br /><br />
+            <span id="registerMessage"><small>Dont have an account? <a href="/register">Register!</a></small></span>
+        </form>
+
+    </fieldset>
+</center>

@@ -1,0 +1,163 @@
+body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.ng-invalid.ng-touched{
+    color: #f4ffbd;
+}
+.panel-heading {
+    padding-top: 2px;
+    padding-bottom:2px;
+}
+#quote {
+    text-align: center;
+}
+#headlogo {
+    margin-left:-34px;
+}
+#theform {
+    margin-left: -10px;
+}
+#characterreadout {
+    margin-left: -80px;
+}
+#classtitle, #classproficiencies{
+       background-color: #e6ffa7;
+}
+#subracetitle, #racialmod, #subracialProficiencies {
+        background-color: #fff4b7;
+}
+
+#backgroundtitle, #subraceproficiencies {
+        background-color: #c3ffaa;
+}
+#questGuide{
+    font:600;
+}
+#raceselect {
+    color: #232323;
+}
+#raceselect:hover {
+    color:grey;
+}
+.abilitylink {
+    color: black;
+}
+.abilitylink:hover {
+    text-decoration: none;
+}
+#loginerrors {
+    list-style-type:none;
+    margin-left: -30px;
+    background-color: #fffeee;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.logininput:focus {
+    background-color:#fffeee;
+}
+.inputlabel {
+    margin-top:4px;
+}
+#equipmenttextarea {
+    resize: none;
+    height: 70px;
+    min-width:540px;
+    border: none;
+}
+#equipmenttextarea:disabled{
+    background-color: white;
+}
+
+/* Carousel */
+.carousel-caption {
+    z-index: 10 !important;
+}
+
+    .carousel-caption p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+@media (min-width: 768px) {
+    .carousel-caption {
+        z-index: 10 !important;
+    }
+}
+
+#trait1, #trait2, #trait3, #trait4, #trait5, #trait6{
+    color: black;
+}
+#trait1:hover, #trait2:hover, #trait3:hover, #trait4:hover, #trait5:hover, #trait6:hover {
+    background-color:honeydew;
+    text-decoration:none;
+}
+#potentialStrMod:active:after, #potentialDexMod:active:after, #potentialConMod:active:after, #potentialWisMod:active:after, #potentialIntMod:active:after {
+    display:none;
+}
+#mainnavbar {
+    align-content: center;
+}
+#navhighlight {
+    background-color: white;
+}
+#navhighlight:hover, #navlink:hover {
+    background-color: lightyellow;
+    text-decoration:none;
+    text-decoration-style: none;
+}
+#loginbutton {
+    margin-top: 10px;
+}
+#registerMessage {
+    display: inline;
+    margin-top: 15px;
+    padding-top: 7px;
+}
+#superscript{
+    font-style:normal;
+    font-weight:100;
+}
+#mycharactername {
+    background-color: #f4ffbd;
+}
+.subscript{
+    color: #1984ae;
+}
+/*#navhighlight:hover {
+    display: inline;
+    color: #fff3b2;
+}*/
+
+/*dungeon master page*/
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+background-image: linear-gradient(to bottom,#d9ffd6 0, #abffbb 75%) !important;
+}
+.creationPanel{
+    
+}
+.creatureName{
+    text-decoration:underline;
+}
+.creatureList{
+    padding-top: .04%;
+}
+.instructions{
+    opacity: .8;
+}
+.createMenu{
+    
+}

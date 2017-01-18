@@ -1,0 +1,53 @@
+<html ng-app="DNDCalcSecure">
+<head>
+    <title>DNDCalcSecure</title>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <base href="/" />
+</head>
+<body ng-controller="AccountController as account">
+    <div class="container">
+        <center>
+            <a href="/"><img src="~/images/logo.png" width="175" /></a><br />
+            @*NAVBAR*@
+            <span ng-show="account.isLoggedIn()">
+                
+                <a href="/creation" id="navlink"><mark id="navhighlight">Creation</mark></a>
+            </span>
+            <span ng-show="account.isLoggedIn()">
+                | <a href="/secret" id="navlink"><mark id="navhighlight">My Characters</mark></a> |
+            </span> 
+            <a href="/login" id="navlink" ng-show="!account.isLoggedIn()"><mark id="navhighlight">Login</mark></a>
+            <a href="#" id="navlink" ng-click="account.logout()" ng-show="account.isLoggedIn()"><mark id="navhighlight">Logout</mark></a>
+            <div ng-show="account.isLoggedIn()">
+                [{{account.getUserName()}}]
+            </div>
+        </center>
+        <hr />
+
+        <ui-view></ui-view>
+
+    </div>
+    <!-- Library Files -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-touch/angular-touch.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!-- App Files-->
+    <script src="/ngapp/app.js"></script>
+    <script src="/ngapp/controllers/controllers.js"></script>
+    <script src="/ngapp/services/services.js"></script>
+
+
+    <!-- Security -->
+    <script src="/ngapp/controllers/accountcontroller.js"></script>
+    <script src="/ngapp/services/accountservice.js"></script>
+
+</body>
+</html>
