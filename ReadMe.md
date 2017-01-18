@@ -1,6 +1,9 @@
+Quest Guide
+===========
+
 ## Synopsis
 
-An ongoing project to build a website for DND character creation, and helping Dungeon Masters organize their creatures.
+>An ongoing project to build a website for DND character creation, and helping Dungeon Masters organize their >creatures.
 
 ## About
 This website utilizes technologies including Angular 1, TypeScript, C#, and .NETcore.
