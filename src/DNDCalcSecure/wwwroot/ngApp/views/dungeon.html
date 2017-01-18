@@ -1,0 +1,33 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="text-center h1">Dungeon Master</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-9 managementPanel">
+            <small class="instructions"><span class="badge">Creature</span> <span class="creatureName">Name</span> <i class="fa fa-heart"></i> health</small>
+            <hr />
+            <ul ng-repeat="creature in controller.creatures" class="list-unstyled creatureList">
+                <li><span class="badge">{{creature.type}}</span> <span class="creatureName">{{creature.name}}</span>  <i class="fa fa-heart"></i> {{creature.hp}}
+                    <button uib-popover="ac {{creature.statblock.ac}}, speed {{creature.statblock.speed}}, xp {{creature.statblock.xp}}" 
+                            popover-title="{{creature.name}} the {{creature.type}}" type="button" class="btn btn-default btn-sm" popover-placement="right" ><i class="fa fa-shield"></i></button></li>
+            </ul> 
+        </div>
+        <div class="col-sm-6 col-md-3 creationPanel">
+            <div class="panel panel-default">
+                <input class="form-control" type="text" ng-model="controller.newCreatureName" style="height:3em;" placeholder="Creature Name" />
+                <div class="btn-group text-center" uib-dropdown dropdown-append-to-body>
+                    <button id="btn-append-to-body" type="button" class="btn btn-success btn-lg" uib-dropdown-toggle>
+                        Create <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                        <li class="dropdown-header">Henchman</li>
+                        <li class="divider"></li>
+                        <li role="menuitem" class="creatureMenuItem"><a href="#" ng-click="controller.addCreature(6, 'Knight')">Knight</a></li>
+                        <li role="menuitem" class="creatureMenuItem"><a href="#" ng-click="controller.addCreature(4, 'Veteran')">Veteran</a></li>
+                        <li role="menuitem" class="creatureMenuItem"><a href="#" ng-click="controller.addCreature(2, 'Thug')">Thug</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

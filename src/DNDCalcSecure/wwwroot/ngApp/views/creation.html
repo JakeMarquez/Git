@@ -1,0 +1,398 @@
+﻿<div class="container">
+    <div class="row" id="theform">
+        <!--STARTING DIV-->
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-4">
+            </br>
+            <form method="get" action="/save" ng-submit="controller.savedata()">
+                <div class="form-group">
+                    <label for="Class"><a ng-click="controller.jumpTo(controller.class)" id="raceselect"><i class="fa fa-cog"></i></a> Class:</label>
+                    <select class="form-control" id="Class" ng-model="controller.class">
+                        <option title="Rage, Unarmored Defense">Barbarian</option>
+                        <option title="Bardic Inspiration, Spells">Bard</option>
+                        <option title="Divin Domain, Spells">Cleric</option>
+                        <option title="Druidic, Spells">Druid</option>
+                        <option title="Heal, Extra Action">Fighter</option>
+                        <option title="Martial Arts, Unarmored Defense">Monk</option>
+                        <option title="Heal, Divine Smight">Paladin</option>
+                        <option title="Favored Enemy, Natural Explorer">Ranger</option>
+                        <option title="Sneak Attack, Lockpicking">Rogue</option>
+                        <option title="Sorcerous Origin, Spells">Sorcerer</option>
+                        <option title="Otherworldy Patron, spells">Warlock</option>
+                        <option title="Cantrips, Spells">Wizard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Race"><a ng-click="controller.jumpTo(controller.race)" id="raceselect"><i class="fa fa-user-circle-o"></i></a> Race:</label>
+                    <select class="form-control" id="Race" ng-model="controller.race">
+                        <option title="+2 Con">Dwarf</option>
+                        <option title="+2 Dex">Elf</option>
+                        <option title="+2 Dex">Halfling</option>
+                        <option title="+1 All">Human</option>
+                        <option title="+2 Str, +1 Cha">Dragonborn</option>
+                        <option title="+2 Int">Gnome</option>
+                        <option title="+2 Cha, +2 Player Choice">Half Elf</option>
+                        <option title="+2 Str, +1 Con">Half Orc</option>
+                        <option title="+1 Int, +2 Cha">Tiefling</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="SubRace"><a ng-click="controller.jumpTo(controller.selectedsubrace)" id="raceselect"><i class="fa fa-user-circle"></i></a> Subrace:</label>
+                    <select class="form-control" id="SubRace" ng-model="controller.selectedsubrace">
+                        <option title="{{item.title}}" ng-repeat="item in controller.subrace2 | filter: controller.race">{{item.race}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Background"><a ng-click="controller.jumpTo(controller.background)" id="raceselect"><i class="fa fa-id-card-o"></i></a> Background: </label>
+                    <select class="form-control" id="Background" ng-model="controller.background">
+                        <option title="Insight, Religion">Acolyte</option>
+                        <option title="Deception, Sleight of Hand">Charlatan</option>
+                        <option title="Deception, Stealth">Criminal</option>
+                        <option title="Acrobatics, Preformance">Entertainer</option>
+                        <option title="Animal Handling, Survival">Folk Hero</option>
+                        <option title="Insight, Persuasion">Guild Artisan</option>
+                        <option title="Medicine, Religion">Hermit</option>
+                        <option title="History, Persuasion">Noble</option>
+                        <option title="Athletics, Survival">Outlander</option>
+                        <option title="Arcana, History">Sage</option>
+                        <option title="Atheltics, Perception">Sailor</option>
+                        <option title="Athletics, Intimidation">Soldier</option>
+                        <option title="Sleight of Hand, Stealth">Urchin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Create</button></br>
+            </form></br>
+        </div>
+        <div class="col-xs-4">
+
+        </div>
+    </div> <!--ENDING DIV-->
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+
+        </div>
+        <div class="col-md-6">
+            <dl>
+                <!--CLASS SECTION-->
+                <dt id="Barbarian"><mark>Barbarian</mark></dt>
+                <dd>Description:  A fierce warrior of primitive background who can enter a battle rage.</br>
+
+                Primary Ability:  Strength</br>
+
+                Saving Throw Proficiencies:  Strength and Constitution</br>
+
+                Armor and Weapon Proficiencies:  Light and medium armor, shields, simple and martial weapons</br></dd>
+                <dt id="Bard"><mark>Bard</mark></dt>
+                <dd>
+                    Description:The bard uses music and magic to support and inspire the rest of the party.</br>
+                    Primary Ability: Charisma </br>
+                    Saving Throw Proficiencies: Dexterity and Charisma</br>
+                    Armor and Weapon Proficiencies: Light Armor, Simple Weapons, Hand Crossbows, Longswords, Rapiers, Shortswords</br>
+                </dd>
+                <dt id="Cleric"><mark>Cleric</mark></dt>
+                <dd>Description: Champions of the divine, clerics align with an aspect of their god and draw their spells and abilities from their faith.</br>
+                    Primary Ability: Wisdom</br>
+                    Saving Throw Proficiencies: Wisdom and Charisma</br>
+                    Armor and Weapon Proficiencies: Light Armor, Medium Armor, Shields, Simple Weapons</br>    
+                </dd>
+                <dt id="Druid"><mark>Druid</mark></dt>
+                <dd>Description: Druids wield the power of nature against their foes.</br>
+                    Primary Ability: Wisdom</br>
+                    Saving Throw Proficiencies: Wisdom and Intelligence:</br>
+                    Armor and Weapon Proficiencies: Light Armor, Medium Armor, Shield (must not be made of metal)</br>
+                </dd>
+                <dt id="Fighter">
+                    <mark>Fighter</mark>
+                </dt>
+                <dd>
+                    Description:
+
+                    A master of martial combat, skilled with a variety of weapons and armor.</br>
+
+                    Primary Ability:
+
+                    Strength or Dexterity</br>
+
+                    Saving Throw Proficiencies:
+
+                    Strength and Constitution/Dex</br>
+
+                    Armor and Weapon Proficiencies:
+
+                    All armor, shields, simple and martial weapons</br>
+                </dd>
+                <dt id="Monk"><mark>Monk</mark></dt>
+                <dd>Description: Monks magically harness the energy that flows through their bodies.</br>
+                    Primary Ability:
+
+                    Dexterity & Wisdom</br>
+
+                    Saving Throw Proficiencies:
+
+                    Strength & Dexterity</br>
+
+                    Armor and Weapon Proficiencies:
+
+                    None; Simple weapons, shortswords
+                </dd>
+                <dt id="Ranger"><mark>Ranger</mark></dt>
+                <dd>Description: Masters of the wild and hunting.</br>
+                     Primary Ability: Dexterity</br>
+
+                     Saving Throw Proficiencies: Dexterity and Strength</br>
+
+                     Armor and Weapon Proficiencies: Light and medium armor, shield, Simple weapons, martial weapons</dd>
+                <dt id="Rogue">
+                    <mark>Rogue</mark>
+                </dt>
+                <dd>
+                    Description:  A scoundrel and stealthy warrior who uses stealth and trickery to overcome obstacles and enemies.</br>
+
+                    Primary Ability: Dexterity</br>
+
+
+                    Saving Throw Proficiencies: Dexterity and Intelligence</br>
+
+                    Armor and Weapon Proficiencies: Light Armor, Simple Weapons, Hand crossbows, Longswords, Rapiers, Shortswords</br>
+                </dd>
+                <dt id="Paladin">
+                    <mark>Paladin</mark>
+                </dt>
+                <dd>
+                    Description:  A holy warrior bound to a sacred oath.</br>
+
+                    Primary Ability: Strength or Charisma</br>
+
+                    Saving Throw Proficiencies:  Wisdom and Charisma</br>
+
+                    Armor and Weapon Proficiencies:  All armor, shields, simple and martial weapons</br>
+                </dd>
+                <dt id="Sorcerer"><mark>Sorcerer</mark></dt>
+                <dd>
+                    Description: Magic is a part of every sorcerer, suffusing body, mind, and spirit with a latent power that waits to be tapped. </br>
+                    Primary Ability: Charisma</br>
+                    Saving Throw Proficiencies: Constitution and Charisma</br>
+                    Armor and Weapon Proficiencies: none; Daggers, darts, slings, quarterstaffs, light crossbows.
+                </dd>
+                <dt id="Warlock"><mark>Warlock</mark></dt>
+                <dd>Description: A Warlocks magic is defined by a pact with an otherworldly Being</br>
+                    Primary Ability: Charisma</br>
+                    Saving Throw Proficiencies: Wisdom and Charisma</br>
+                    Armor and Weapon Proficiencies: Light Armor, Simple Weapons</br>   
+                </dd>
+                <dt id="Wizard">
+                    <mark>Wizard</mark>
+                </dt>
+                <dd>
+                    Description: Master of the Arcane. </br>
+                    Primary Ability: Intelligence</br>
+                    Saving Throw Proficiencies: Intelligence and Wisdom</br>
+                    Armor and Weapon Profieciencies: Daggers, darts, slings, quarterstaffs, light crossbows
+                </dd>
+            </dl>
+            <dl>
+                <dt id="Dwarf"><u>Dwarf</u></dt> <!--RACE SECTION-->
+                <dd>
+                    Short and stout, grumpy but loyal, love digging, and tough as an old boot.
+                    They get a +2 bonus to Constitution, have Darkvision, protection against poison, training with axe and hammer weapons,
+                    training with several kinds of artisan's tools, the usual dwarven armored movement and stone knowledge. They get three subraces; Hill, Mountain, and Gray.
+                    </br><mark id="Hill Dwarf">Hill Dwarves</mark> are wiser (+1 Wisdom) and even tougher than regular dwarves, giving them extra maximum hit points equal to their character level.
+                    </br><mark id="Mountain Dwarf">Mountain Dwarves</mark> are more warlike, getting +2 Strength and free proficiency with light armor and medium armor.
+                    The *only* subrace to offer two +2 bonuses now, balanced by the fact that the armor training will almost certainly be completely redundant to any class that would realistically make use of those stats.
+                    However, it's a good choice for a squishy character who wants melee a bit, like a blade-pact warlock.
+                    </br><mark id="graydwarf">Duergar, or "Gray Dwarves"</mark>, appear in the Sword Coast Adventurer's Guide.
+                    In addition to the base dwarf bonuses, they get a boost to Strength, Superior Darkvision (so Darkvision 120 feet),
+                    Duergar Resilience (Advantage on saving throws against Charm, Illusion and Paralysis effects),
+                    and the spell-like abilities of Enlarge/Reduce (3rd level) and Invisibility (5th level), both usable once per long rest.
+                    Uniquely, they recharge these spell-like abilities faster when in the Underdark, allowing them to use these spells once per short rest down there.
+                    They also get Sunlight Sensitivity, though tweaked slightly;
+                    in addition to taking disadvantage to attack rolls and Perception checks when they or their target is in direct sunlight,
+                    they can't use their spell-like abilities if they're in direct sunlight.
+                </dd>
+                <dt id="Elf"><u>Elf</u></dt>
+                <dd>
+                    Graceful, eerie, beautiful. Grace translates to a +2 bonus to Dexterity, keen senses give them Darkvision and proficiency in Perception,
+                    they are resistant to charming and immune to sleep, and they trance instead of sleeping.
+                    They get two subraces; high and wood.
+                    </br><mark id="High Elf">High Elves</mark> are the magically adept elite. They get +1 Intelligence, proficiency with long & short swords and bows,
+                    an extra language, and the ability to cast one wizard cantrip of the player's choice.
+                    </br><mark id="Wood Elf">Wood Elves</mark> are the iconic forest-dwelling primal elves. +1 to Wisdom, same weapon proficiency as High Elves,
+                    even quicker (they have base speed 35 feet, making them the fastest of the default races),
+                    and they're extra adept at using natural phenomena for hiding.
+
+                </dd>
+                <dt id="Half Elf"><u>Half Elf</u></dt>
+                <dd>Half-Elves gain +2 Charisma, making them natural diplomats, 
+                but also get +1 to two other ability scores of their choice, are automatically proficient in 
+                two skills of their choice, as well as retaining the darkvision and resistances to charming and
+                 sleep of their elven ancestors. They can also grow beards, something that may have been in previous
+                 editions, but is directly addressed in this one. The best PHB race for any Cha-based class,
+                 due to their tremendous versatility.</dd>
+                <dt id="Halfling"><u>Halfling</u></dt>
+                <dd>
+                    Small, cheerful, practical creatures, halflings try to make friends with anybody.
+                     They usually don't have any greater goal beyond a simple, pleasant life. 
+                    They get +2 Dexterity, they're Small sized, their Lucky trait lets them reroll various results of 1,
+                     they're resistant to fear effects and they can move through spaces occupied by creatures 
+                    that are Medium-sized or bigger. Their two subraces are lightfoot and stout.
+
+                    <mark id="Lightfoot Halfling">Lightfoot Halflings</mark> are sneaky even by Halfling standards, 
+                    able to use Medium-sized or bigger creatures to hide behind and gaining +1 Charisma.
+
+                    <mark id="Stout Halfling">Stout Halflings</mark> are rumored to have dwarf blood,
+                     and so they get +1 Constitution and identical poison protection.
+                </dd>
+                <dt id="Gnome"><u>Gnome</u></dt>
+                <dd>
+                    Crazy, hyper-energetic and insatiably curious, gnomes are also the only uncommon race in the corebook with full subraces,
+                    assuming the dragonborn's choice of dragon doesn't count. +2 Intelligence, small-sized, Darkvision,
+                    and advantage to any saving throw against magic that relies on Intelligence, Wisdom or Charisma.
+                    </br><mark id="Forest Gnome">Forest Gnomes</mark> are the more mystical, nature-affiliated gnomes, gaining +1 Dexterity,
+                    having the minor illusion cantrip as a racial ability,
+                    and being able to speak with any natural animal that is Small or smaller.
+                    With Dragonlance supported, but the Kender race missing after playtest,
+                    these seem to hold up as the kender replacement.
+                    </br><mark id="Deep Gnome">Deep Gnomes</mark> got added by the Elemental Evil Player's Guide web-feature from the WoTC website.
+                    There was a printed reveal in the Sword Coast Adventurer's Guide, but the versions are absolutely identical.
+                    These are the "svirfneblin", the Underdark-dwelling gnomes mentioned but mostly ignored in editions past.
+                    They get +1 Dexterity, Superior Darkvision (so they see in the dark 120ft instead of 60ft),
+                    and Stone Camouflage (advantage on Dexterity [Stealth] checks made in rocky terrain).
+                    If Feats are allowed, they have a racial one called Svirfneblin Magic that lets them cast Nondetection (self-only) at will and Blindness/Deafness,
+                    Blur and Disguise Self once per long rest.
+                </dd>
+                <dt id="Half Orc"><u>Half Orc</u></dt>
+                <dd>
+                    Big scary bruisers, half-orcs get +2 strength and +1 constitution,
+                     have darkvision, are automatically proficient in the Intimidation skill,
+                     are harder to kill than other races, and deal much nastier criticals with melee weapons.
+                     This effectively makes them the best barbarians in the game, and gives barbarian-like
+                     abilities to any other classes. New design eliminates the culturally awkward standard of
+                     male orcs forcing themselves on human women, to the point of actually raising the idea 
+                    that the race could be used for playing a half-dwarf, half-orc.
+                </dd>
+                <dt id="Tiefling"><u>Tiefling</u></dt>
+                <dd>
+                    Following in the footsteps of 4e, with a unified (if still very variable)
+                     appearance and a tiefling racial backlore as "descendants of a cursed empire" rather than
+                     "spawn of a human and a fiend". +1 Intelligence, +2 Charisma, resistant to fire,
+                     darkvision and "Infernal Legacy", which gives them three warlock spells as racial abilities;
+                     the Thaumaturgy cantrip (level 1), Hellish Rebuke (1/day at level 3) and Darkness (1/day at level 5).
+                </dd>
+                <dt id="Human"><u>Human</u></dt>
+                <dd>
+                    Humans are the versatile race once again.
+                    Either they get a +1 bonus to all ability scores
+                    (which is better than any previous edition of the game has trained you to believe, but still kinda bland),
+                    or they get +1 to any two ability scores they want, a free skill proficiency,
+                    and a free feat (which, as usual, rocks).
+                </dd>
+            </dl>
+            <dl>
+                <!--BACKGROUND SECTION-->
+                <dt title="Insight, Religion, 2 Languages" id="Acolyte"><mark>Acolyte</mark></dt>
+                <dd>
+                    You have spent your life in the service of a temple to a specific god or pantheon of gods.
+                    You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine.
+                    You are not necessarily a cleric - performing sacred rites is not the same thing as channeling divine power.
+                    Choose a god, a pantheon of gods, or some other quasi-divine being from among those listed in appendix B or those specified by your DM, and work with your DM to detail the nature of your religious service.
+                    Were you a lesser functionary in a temple, raised from childhood to assist the priests in the sacred rites?
+                    Or were you a high priest who suddenly experienced a call to serve your god in a different way?
+                    Perhaps you were the leader of a small cult outside of any established temple structure, or even an occult group that served a fiendish master that you now deny.
+                </dd>
+
+                <dt title="Deception, Sleight of Hand, Forgery Kit, Disguise Kit" id="Charlatan"><mark>Charlatan</mark></dt>
+                <dd>
+                    You have always had a way with people.
+                    You know what makes them tick, you can tease out their hearts' desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books.
+                    It’s a useful talent, and one that you’re perfectly willing to use for your advantage.
+                    You know what people want and you deliver, or rather, you promise to deliver.
+                    Common sense should steer people away from things that sound too good to be true, but common sense seems to be in short supply when
+                    you’re around.
+                </dd>
+                <dt title="Deception, Stealth, Gaming set, Thieves Tools" id="Criminal"><mark>Criminal</mark></dt>
+                <dd>
+                    You are an experienced criminal with a history of breaking the law.
+                    You have spent a lot of time among other criminals and still have contacts within the criminal underworld.
+                    You’re far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society.
+                </dd>
+                <dt title="Acrobatics, Performance, Disguise Kit, Musical Instrument" id="Entertainer"><mark>Entertainer</mark></dt>
+                <dd>
+                    You thrive in front of an audience.
+                    You know how to entrance them, entertain them, and even inspire them.
+                    Your poetics can stir the hearts of those who hear you, awakening grief or joy, laughter or anger.
+                    Your music raises their spirits or captures their sorrow.
+                    Your dance steps captivate, your humor cuts to the quick.
+                    Whatever techniques you use, your art is your life.
+                </dd>
+                <dt title="Animal Handling, Artisan Tool, Survival, Vehicles(land)" id="Folk Hero"><mark>Folk Hero</mark></dt>
+                <dd>
+                    You come from a humble social rank, but you are destined for so much more.
+                    Already the people of your home village regard you as their champion, and your destiny calls you to stand against the tyrants and monsters that threaten the common folk everywhere.
+                </dd>
+                <dt title="Insight, Persuasion, Artisan Tool, Language" id="Guild Artisan"><mark>Guild Artisan</mark></dt>
+                <dd>
+                    You are a member of an artisan’s guild, skilled in a particular field and closely associated with other artisans.
+                    You are a well-established part of the mercantile world, freed by talent and wealth from the constraints of a feudal social order.
+                    You learned your skills as an apprentice to a master artisan, under the sponsorship of your guild, until you became a master in your own right.
+                </dd>
+                <dt title="Medecine, Religion, Herbalism Kit" id="Hermit"><mark>Hermit</mark></dt>
+                <dd>
+                    You lived in seclusion—either in a sheltered community such as a monastery, or entirely alone—for a formative part of your life.
+                    In your time apart from the clamor of society, you found quiet, solitude, and perhaps some of the answers you were looking for.
+                </dd>
+                <dt title="History, Persuasion, One Board-Game" id="Noble"><mark>Noble</mark></dt>
+                <dd>
+                    You understand wealth, power, and privilege.
+                    You carry a noble title, and your family owns land, collects taxes, and wields significant political influence.
+                    You might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement.
+                    Or you could be an honest, hard-working landowner who cares deeply about the people who live and work on your land, keenly aware of your responsibility to them.
+                </dd>
+                <dt title="Athletics, Survival, Musical Instrument" id="Outlander"><mark>Outlander</mark></dt>
+                <dd>
+                    You grew up in the wilds, far from civilization and the comforts of town and technology.
+                    You’ve witnessed the migration of herds larger than forests, survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction.
+                    The wilds are in your blood, whether you were a nomad, an explorer, a recluse, a hunter-gatherer, or even a marauder.
+                    Even in places where you don’t know the specific features of the terrain, you know the ways of the wild.
+                </dd>
+                <dt title="Arcana, History, 2 Languages" id="Sage"><mark>Sage</mark></dt>
+                <dd>
+                    You spent years learning the lore of the multiverse.
+                    You scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you.
+                    Your efforts have made you a master in your fields of study.
+                </dd>
+                <dt title="Athletics, Perception, Navigators Tools, Vehicles(water)" id="Sailor"><mark>Sailor</mark></dt>
+                <dd>
+                    You sailed on a seagoing vessel for years.
+                    In that time, you faced down mighty storms, monsters of the deep, and those who wanted to sink your craft to the bottomless depths.
+                    Your first love is the distant line of the horizon, but the time has come to try your hand at something new.
+                </dd>
+                <dt title="Athletics, Intimidation, One Board-Game, Vehicles(land)" id="Soldier"><mark>Soldier</mark></dt>
+                <dd>
+                    War has been your life for as long as you care to remember.
+                    You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield.
+                    You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.
+                </dd>
+                <dt title="Sleight Of Hand, Stealth, Disguise Kit, Thieves Tools" id="Urchin"><mark>Urchin</mark></dt>
+                <dd>
+                    You grew up on the streets alone, orphaned, and poor.
+                    You had no one to watch over you or to provide for you, so you learned to provide for yourself.
+                    You fought fiercely over food and kept a constant watch out for other desperate souls who might steal from you.
+                    You slept on rooftops and in alleyways, exposed to the elements, and endured sickness without the advantage of medicine or a place to recuperate.
+                </dd>
+            </dl>
+        </div>
+        <div class="col-xs-3">
+
+        </div>
+    </div>
+
+</div>
+<style>
+    mark{
+        background-color: lightgoldenrodyellow;
+    }
+</style>

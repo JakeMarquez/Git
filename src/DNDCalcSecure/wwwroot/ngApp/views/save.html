@@ -1,0 +1,121 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+            <p id="characterreadout">
+                <span id="subracetitle">{{controller.title}}</span>
+                <span id="classtitle">{{controller.createdCharacter[0]}}</span>
+                <span id="backgroundtitle">{{controller.createdCharacter[3]}}</span>
+            </p></br>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div>
+                <!--ABILITY SCORES-->
+                <b>Ability Scores</b></br>
+                <a ng-click="controller.jumpTo('Strength')" class="abilitylink">Strength:</a> <a ng-click="controller.firstclick('trait1')" id="trait1" href="#">{{controller.trait1}}</a> <span id="strength"></span><span id="racialmod">{{controller.STR}}</span><span id="potentialStrMod"><a ng-click="controller.addTrait(0)">{{controller.potentialMods[0]}}</a></span></br>
+                <a ng-click="controller.jumpTo('Dexterity')" class="abilitylink">Dexterity:</a> <a ng-click="controller.firstclick('trait2')" id="trait2">{{controller.trait2}}</a> <span id="dexterity"></span><span id="racialmod">{{controller.DEX}}</span><span id="potentialDexMod"><a ng-click="controller.addTrait(1)">{{controller.potentialMods[1]}}</a></span></br>
+                <a ng-click="controller.jumpTo('Constitution')" class="abilitylink">Constitution:</a> <a ng-click="controller.firstclick('trait3')" id="trait3">{{controller.trait3}}</a> <span id="constitution"></span><span id="racialmod">{{controller.CON}}</span><span id="potentialConMod"><a ng-click="controller.addTrait(2)">{{controller.potentialMods[2]}}</a></span></br>
+                <a ng-click="controller.jumpTo('Wisdom')" class="abilitylink">Wisdom:</a> <a ng-click="controller.firstclick('trait4')" id="trait4">{{controller.trait4}}</a> <span id="wisdom"></span><span id="racialmod">{{controller.WIS}}</span><span id="potentialWisMod"><a ng-click="controller.addTrait(3)">{{controller.potentialMods[3]}}</a></span></br>
+                <a ng-click="controller.jumpTo('Intelligence')" class="abilitylink">Intelligence:</a> <a ng-click="controller.firstclick('trait5')" id="trait5">{{controller.trait5}}</a> <span id="intelligence"></span><span id="racialmod">{{controller.INT}}</span><span id="potentialIntMod"><a ng-click="controller.addTrait(4)">{{controller.potentialMods[4]}}</a></span></br>
+                <a ng-click="controller.jumpTo('Charisma')" class="abilitylink">Charisma:</a> <a ng-click="controller.firstclick('trait6')" id="trait6">{{controller.trait6}}</a> <span id="charisma"></span><span id="racialmod">{{controller.CHA}}</span></br>
+           </br><p id="optionalMessage"></p>
+             </div>
+            <div>
+                <dl>
+                    <dt>Proficiencies</dt>
+                    <dd><mark id="subracialProficiencies">{{controller.subrace}}</mark></dd>
+                    <dd ng-repeat="item in controller.classProficiencies | filter: controller.class"><mark id="classproficiencies">{{item.Proficiencies}}</mark></dd>
+                    <dd ng-repeat="item in controller.additionalProficiencies | filter: controller.background"><mark id="subraceproficiencies">{{item.Proficiencies}}</mark></dd>
+                </dl>
+                <dl>
+                    <dt>Subrace Abilities: </dt>
+                    <dd>{{controller.subraceabilities}}</dd>
+                </dl>
+                <input type="checkbox" ng-model="controller.checkBoxValue"/>
+                <b>Auto-Fill</b></br></br>
+                <form class="form-inline">
+                    <input placeholder="Character Name" id="chanameinput" class="form-control" ng-model="controller.characterName"/> <button class="btn btn-default" ng-click="controller.save()">Save</button>
+                </form>
+            </div>
+            <div>
+                <h3>Proficiencies</h3>
+                <dl>
+                    <dt>What are Proficiencies?</dt>
+                    <dd>
+                        When your are proficient, you get to add your proficiency bonus
+                        to any roll associated with that skill. For example, if you are proficient in athletics,
+                        you are able to add your proficiency bonus when making an athletics check to vault over a high wall.
+                        When it comes to armor, proficiency simply means you can wear it without negative consequences.
+                    </dd>
+                </dl>
+                <h3>Ability Scores</h3>
+                <dl>
+                    <dt id="Strength">Strength</dt>
+                    <dd>
+                        Strength measures bodily power,
+                        athletic training, and the extent to which you can exert raw physical force.
+                        You typically use Strength to climb, jump, swim, strike a foe with a melee weapon,
+                        break down doors, lift gates, and burst restraints.
+                        Any character who fights in hand-to-hand combat can benefit from a high Strength score.
+                        Fighters and other warriors, therefore, prefer high Strength scores.
+                    </dd>
+                    <dt id="Dexterity">Dexterity</dt>
+                    <dd>
+                        Dexterity measures your character's physical agility,
+                        reflexes, balance, and poise. You typically use Dexterity to perform an acrobatic action,
+                        such as maintaining balance while moving across a precarious surface,
+                        contorting your body to wriggle through a tight space, striking a distant foe using a projectile,
+                        or slipping free from bindings.
+                        Rogues and other characters who wear light armor prefer high Dexterity scores,
+                        since it helps them avoid enemy attacks.
+                        A character might also use Dexterity when making attacks with certain weapons:
+                        bows, slings, and the like.
+                        Any character who wants to react to danger quickly can benefit from a high Dexterity score.
+                    </dd>
+                    <dt id="Constitution">Constitution</dt>
+                    <dd>
+                        Constitution measures your health and durability.
+                        You typically use Constitution to hold your breath,
+                        do a forced march, run a long distance, and perform a strenuous activity for a long period.
+                        All characters benefit from having a high Constitution score.
+                    </dd>
+                    <dt id="Wisdom">Wisdom</dt>
+                    <dd>
+                        Wisdom reflects how attuned you are to your surroundings,
+                        representing general perceptiveness, intuition, insight, and other, less tangible senses.
+                        Wisdom is also important for understanding divine edicts and expectations.
+                        Although Wisdom is important to all characters who want to be alert,
+                        Wisdom is especially important to clerics and druids,
+                        since the ability is crucial for channeling divine power from the gods and the environment.
+                    </dd>
+                    <dt id="Intelligence">Intelligence</dt>
+                    <dd>
+                        Intelligence describes your mental acuity, your education, and your ability to reason,
+                        recall information, and employ logic to overcome challenges and complications.
+                        You typically use Intelligence to remember an important fact, find clues to a puzzle,
+                        or cast an arcane spell. Arcane magic, such as that used by wizards,
+                        often requires a keen mind for mastery and thus Intelligence is most important to such characters.
+                    </dd>
+                    <dt id="Charisma">Charisma</dt>
+                    <dd>
+                        Charisma measures your ability to influence others and the strength of your personality.
+                        A high Charisma suggests a strong sense of purpose,
+                        whereas a low Charisma indicates a less self-assured personality.
+                        Charisma also determines how well you lead those who follow you.
+                        All characters benefit from a high Charisma,
+                        especially those who deal with nonplayer characters, such as hirelings, henchmen,
+                        and intelligent monsters.
+                        Charisma is also important to spellcasters who manipulate magical power through sheer force of will.
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
