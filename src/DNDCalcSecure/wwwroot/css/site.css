@@ -1,6 +1,23 @@
+@font-face {
+    font-family: aliensandcows;
+    src: url(/fonts/aliens_and_cows_trial.ttf);
+}
+@font-face{
+    font-family: enchantedLand;
+    src: url('/fonts/Enchanted Land.otf');
+}
+@font-face{
+    font-family: marketDeco;
+    src: url('/fonts/Market_Deco.ttf');
+}
+
 body {
     padding-top: 10px;
     padding-bottom: 20px;
+    background-image: url("/images/seamlessBlueTile.jpg");
+}
+.bodyColumn{
+    margin-right: 3%;
 }
 
 /* Wrapping element */
@@ -15,6 +32,25 @@ body {
 .panel-heading {
     padding-top: 2px;
     padding-bottom:2px;
+    
+}
+.panel-body{
+    padding: 5px;
+}
+.panel-header{
+    cursor: default;
+    text-align: center;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: enchantedLand;
+    font-size: 3em;
+}
+.versionTable{
+    font-size: 1.5em;
+    margin-bottom: 1%;
+}
+.tableRow{
+    cursor: default;
 }
 #quote {
     text-align: center;
@@ -23,13 +59,33 @@ body {
     margin-left:-34px;
 }
 #theform {
-    margin-left: -10px;
+}
+#creationFormElement{
+    margin-bottom: 0%;
+}
+.creationFormSubmit{
+    
+}
+.spinIcon{
+    border-radius: 50%;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+.spinIcon:hover{
+      -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 #characterreadout {
     margin-left: -80px;
 }
 #classtitle, #classproficiencies{
        background-color: #e6ffa7;
+}
+.creationFormInput{
+    text-align-last: center;
+    max-width:none;
+    height: 2em;
+    font-size: 2em;
 }
 #subracetitle, #racialmod, #subracialProficiencies {
         background-color: #fff4b7;
@@ -40,6 +96,11 @@ body {
 }
 #questGuide{
     font:600;
+}
+.formLabel{
+    display: block;
+    text-align: center;
+    font-size: 2.5em;
 }
 #raceselect {
     color: #232323;
@@ -58,6 +119,49 @@ body {
     margin-left: -30px;
     background-color: #fffeee;
 }
+.nameBadge{
+    font-size: 1.5em;
+}
+.latestHeroStatblock{
+    font-size: 1.5em;
+    margin-bottom: 1%;
+}
+.latestHeroSubscript{
+    display: block;
+    padding-top: 17px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.latestHeroHeader{
+    margin-bottom: 1%;
+}
+.abilityScoreDisplay{
+    font-size: .8em;
+    margin-left: .6%;
+    margin-right: .5%;
+}
+.characterListBadge{
+    margin-bottom: .5%;
+}
+.strColor{
+    background-color: rgba(255, 127, 127, .3);
+}
+.dexColor{
+    background-color: rgba(251, 127, 255, .3);
+}
+.conColor{
+    background-color: rgba(251, 255, 127, .3);
+}
+.intColor{
+    background-color: rgba(127, 138, 255, .3);
+}
+.wisColor{
+    background-color: rgba(127, 255, 138, .3);
+}
+.chaColor{
+    background-color: rgba(127, 255, 250, .3);
+}
+
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
@@ -111,16 +215,39 @@ textarea {
 #mainnavbar {
     align-content: center;
 }
-#navhighlight {
-    background-color: white;
+.navhighlight:hover{
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(236, 246, 255, 1);
+    box-shadow: 0px 2px 2px #888888;
 }
-#navhighlight:hover, #navlink:hover {
-    background-color: lightyellow;
+.navlink:hover{
     text-decoration:none;
     text-decoration-style: none;
 }
+.navlink:visited{
+    text-decoration:none;
+    text-decoration-style: none;
+}
+.navhighlight{
+    box-shadow: 0px 2px 2px #888888;
+}
+.navhighlight, .navlink{
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(236, 246, 255, .5);
+    font-size: 1.1em;
+}
+#bannerLink{
+    padding-bottom: 1%;
+}
 #loginbutton {
     margin-top: 10px;
+}
+#loggedInUser{
+    margin-top: 4px;
+    color: black;
 }
 #registerMessage {
     display: inline;
@@ -136,6 +263,13 @@ textarea {
 }
 .subscript{
     color: #1984ae;
+}
+.panel{
+    background-color: rgba(255, 255, 255, .7) !important;
+}
+#adventureQuote{
+    margin-top: 3px;
+    cursor: default;
 }
 /*#navhighlight:hover {
     display: inline;

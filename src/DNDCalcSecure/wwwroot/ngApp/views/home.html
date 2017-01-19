@@ -1,49 +1,72 @@
 <div class="container">
-    <div>
-        <a href="/dungeon" class="center-block btn-info btn-sm active text-center">Dungeon Master Page</a>
-        <pre title="{{controller.message.author}}"><center>{{controller.message.text}}</center></pre>
-    </div><br/>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 bodyColumn">
+            <div>
+                <pre title="{{controller.message.author}}" id="adventureQuote" class="text-center">{{controller.message.text}}</pre>
+            </div>
             <div class="panel panel-default">
-                <div class="panel-heading"><h4><u>Whats New</u></h4></div>
+                <div class="panel-heading"><h2 class="panel-header">Whats New</h2></div>
                 <div class="panel-body">
-                    <dl>
-                        <dt>Version 1.2</dt>
-                        <dd>Dungeon Master page added, Dungeon Master Beta app added.<sup class="subscript">JHM</sup></dd>
-                        <dt>Version 1.1</dt>
-                        <dd>Nicknames added, 'My Characters' page added, and updated ability score readout.<sup class="subscript">JHM</sup></dd>
-                        <dt>Version 1.0</dt>
-                        <dd>Updated creation form, security update, and Autofill option added.<sup class="subscript">JHM</sup></dd>
-                    </dl>
-                    <h4><u>Newest Hero</u></h4>
-                    <dl>
-                        <dd ng-repeat="item in controller.dndResource | orderBy: item.Id : true | limitTo: 1">
-                            <span class="badge">{{item.name}}</span><sup class="subscript"> {{item.author}}</sup></br>
-                            {{item.race}} {{item.class}}</br>
-                            <span title="{{controller.abilityTitles[0]}}">{{controller.parseAbilityScores(item.abilityScores,0)}}</span> /
-                            <span title="{{controller.abilityTitles[1]}}">{{controller.parseAbilityScores(item.abilityScores,1)}}</span> /
-                            <span title="{{controller.abilityTitles[2]}}">{{controller.parseAbilityScores(item.abilityScores,2)}}</span> /
-                            <span title="{{controller.abilityTitles[3]}}">{{controller.parseAbilityScores(item.abilityScores,3)}}</span> /
-                            <span title="{{controller.abilityTitles[4]}}">{{controller.parseAbilityScores(item.abilityScores,4)}}</span> /
-                            <span title="{{controller.abilityTitles[5]}}">{{controller.parseAbilityScores(item.abilityScores,5)}}</span>
-
-                            <br/>
-                        </dd>
-                    </dl>
+                    <table class="table table-hover versionTable">
+                        <tbody>
+                            <tr class="tableRow">
+                                <td><strong>version 1.2</strong></td>
+                                <td>Dungeon Master page added, Dungeon Master Beta app added.<sup class="subscript">JHM</sup></td>
+                            </tr>
+                            <tr class="tableRow">
+                                <td><strong>version 1.1</strong></td>
+                                <td>Nicknames added, My Characters page added, updated ability score readout.<sup class="subscript">JHM</sup></td>
+                            </tr>
+                            <tr class="tableRow">
+                                <td><strong>version 1.0</strong></td>
+                                <td>Updated creation form, updated security, Autofill option added.<sup class="subscript">JHM</sup></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading"><h4><u>Character List</u></h4></div>
-                <div class="panel-body">
-                    <dl>
-                        <dt ng-repeat="item in controller.dndResource"><span class="badge">{{item.id}}</span> {{item.name}} the {{item.race}} {{item.class}}<sup><span class="subscript" id="superscript">{{item.author}}</span></sup></dt>
-                    </dl>
+                <div class="panel-heading latestHeroHeader"><h2 class="panel-header">Latest Heroes</h2></div>
+                <div class="panel-body" >
+                    <div class="row latestHero tableRow">
+                        <div class="col-sm-4 latestHeroStatblock text-center" ng-repeat="item in controller.dndResource | orderBy: item.Id : true | limitTo: 3">
+                            <span class="badge nameBadge">{{item.name}}</span>
+                            <sup class="subscript latestHeroSubscript">[{{item.author}}]</sup>
+                            <strong>{{item.race}} {{item.class}}</strong><br />
+                            <span class="abilityScoreDisplay strColor">Str</span>
+                            <span class="abilityScoreDisplay dexColor">Dex</span>
+                            <span class="abilityScoreDisplay conColor">Con</span>
+                            <span class="abilityScoreDisplay intColor">Int</span>
+                            <span class="abilityScoreDisplay wisColor">Wis</span>
+                            <span class="abilityScoreDisplay chaColor">Cha</span><br/>
+                            <span title="{{controller.abilityTitles[0]}}" class="strColor">{{controller.parseAbilityScores(item.abilityScores,0)}}</span> /
+                            <span title="{{controller.abilityTitles[1]}}" class="dexColor">{{controller.parseAbilityScores(item.abilityScores,1)}}</span> /
+                            <span title="{{controller.abilityTitles[2]}}" class="conColor">{{controller.parseAbilityScores(item.abilityScores,2)}}</span> /
+                            <span title="{{controller.abilityTitles[3]}}" class="intColor">{{controller.parseAbilityScores(item.abilityScores,3)}}</span> /
+                            <span title="{{controller.abilityTitles[4]}}" class="wisColor">{{controller.parseAbilityScores(item.abilityScores,4)}}</span> /
+                            <span title="{{controller.abilityTitles[5]}}" class="chaColor">{{controller.parseAbilityScores(item.abilityScores,5)}}</span>
+                        </div>
+                    </div>           
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2 class="panel-header">Character List</h2></div>
+                <div class="panel-body">
+                    <table class="table table-hover versionTable">
+                        <tbody>
+                            <tr ng-repeat="item in controller.dndResource" class="tableRow">
+                                <td>
+                                    <span class="badge characterListBadge">{{item.id}}</span> <strong>{{item.name}}</strong> the {{item.race}} {{item.class}}
+                                    <sup><span class="subscript" id="superscript">{{item.author}}</span></sup>
+                                </td>
+                            </tr>
+                        </tbody>                   
+                    </table>
+                </div>
+            </div> <br/>
         </div>
-        <div class="col-md3"></div>
+        <div class="col-lg-1"></div>
     </div>
 </div>
 <style>

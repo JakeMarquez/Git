@@ -1,6 +1,6 @@
 <html ng-app="DNDCalcSecure">
 <head>
-    <title>DNDCalcSecure</title>
+    <title>Quest Guide</title>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -11,23 +11,22 @@
 <body ng-controller="AccountController as account">
     <div class="container">
         <center>
-            <a href="/"><img src="~/images/logo.png" width="175" /></a><br />
+            <a href="/"><img src="~/images/logo.png" width="175" id="bannerLink"/></a><br />
             @*NAVBAR*@
             <span ng-show="account.isLoggedIn()">
                 
-                <a href="/creation" id="navlink"><mark id="navhighlight">Creation</mark></a>
+                <a href="/creation" class="navlink"><mark class="navhighlight">Creation</mark></a>
             </span>
             <span ng-show="account.isLoggedIn()">
-                | <a href="/secret" id="navlink"><mark id="navhighlight">My Characters</mark></a> |
+                | <a href="/secret" class="navlink"><mark class="navhighlight">My Characters</mark></a> |
             </span> 
-            <a href="/login" id="navlink" ng-show="!account.isLoggedIn()"><mark id="navhighlight">Login</mark></a>
-            <a href="#" id="navlink" ng-click="account.logout()" ng-show="account.isLoggedIn()"><mark id="navhighlight">Logout</mark></a>
-            <div ng-show="account.isLoggedIn()">
+            <a href="/login" class="navlink" ng-show="!account.isLoggedIn()"><mark class="navhighlight">Login</mark></a>
+            <a href="#" class="navlink" ng-click="account.logout()" ng-show="account.isLoggedIn()"><mark class="navhighlight">Logout</mark></a>
+            <div ng-show="account.isLoggedIn()" id="loggedInUser">
                 [{{account.getUserName()}}]
             </div>
         </center>
-        <hr />
-
+        <br/>
         <ui-view></ui-view>
 
     </div>

@@ -376,7 +376,7 @@ namespace DNDCalcSecure.Controllers {
                 { race: "Lightfoot Halfling", mods: "2DEX,1CHA", Proficiencies: "Navigation", Abilities: "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you." },
                 { race: "Stout Halfling", mods: "2DEX,1CON", Proficiencies: "Resisting Poison", Abilities: "You have advantage on saving throws against poison, and you have resistance against poison damage." },
                 { race: "Dragonborn", mods: "2STR,1CHA", Proficiencies: "Breath Weapon", Abilities: "Resistance to one damage type, and a breath weapon" },
-                { race: "Half Elf", mods: "2CHA", Proficiencies: "2 of your choice!", Abilities: "60ft Darkvision, resistance against being Charmed or put to Sleep" },
+                { race: "Half Elf", mods: "2CHA", Proficiencies: "2 of your choice", Abilities: "60ft Darkvision, resistance against being Charmed or put to Sleep" },
                 { race: "Half Orc", mods: "2STR,1CON", Proficiencies: "Intimidation", Abilities: "Extra damage die on critical, When dropped to 0hp - can choose to be at 1hp instead" },
                 { race: "Tiefling", mods: "2CHA,1INT", Proficiencies: "Reading Infernal", Abilities: "Resistance to Fire, 60ft Darkvision, Thaumaturgy Cantrip"}
             );
