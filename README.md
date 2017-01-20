@@ -4,7 +4,7 @@ A website in progress aiming to simplify DND character creation, and facilitate 
 ## Motivation
 
 DND literature can be difficult to understand at times, so my goal is to create a fast paced
-application to expedite the process while still showcasing important character details.
+application to expedite the process while still showcasing important game details.
 
 ## Current Status
 V.1.2 - Dungeon Master page added, Dungeon Master Beta app added, site styling rebuilt with background image, BS panels, Fontawesome icons, Fontawesome Icon animation, New Character form resizing and restyling, New Character form instructions button and modal added, Save Character form resizing and restyling. 
