@@ -3,7 +3,7 @@ A website in progress aiming to simplify DND character creation, and facilitate 
 
 ## Motivation
 
-I believe DND literature can be difficult to understand at times, so my goal is to create a fast paced
+DND literature can be difficult to understand at times, so my goal is to create a fast paced
 application to expedite the process while still showcasing important character details.
 
 ## Current Status
