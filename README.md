@@ -1,4 +1,4 @@
-# Quest Guide
+# Quest-Guide
 A website in progress aiming to simplify DND character creation, and facilitate Dungeon Master organization.
 
 ## Motivation
