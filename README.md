@@ -29,7 +29,7 @@ Typescript is a javascript superset that allows clean and smart coding with ease
 ### Angular JS 1
 Angular JS is like the glue of the front end - facilitating many important features within its UI including databinding and dependency injection and responsive directives like the modal dropdown and alert.
 
-### C#
+### C Sharp
 C# is the language of the back-end of the application. C# handles the storage of all data to be kept in the database such as created characters or Dungeon Master templates. It also handles the storage of all user information in the program, and the validation of such.
 
 
