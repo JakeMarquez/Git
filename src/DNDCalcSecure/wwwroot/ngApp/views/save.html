@@ -1,47 +1,78 @@
 ﻿<div class="container">
     <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6 text-center">
-            <p id="characterreadout">
-                <span id="subracetitle">{{controller.title}}</span>
-                <span id="classtitle">{{controller.createdCharacter[0]}}</span>
-                <span id="backgroundtitle">{{controller.createdCharacter[3]}}</span>
-            </p></br>
-        </div>
-        <div class="col-sm-3"></div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
-            <div>
-                <!--ABILITY SCORES-->
-                <b>Ability Scores</b></br>
-                <a ng-click="controller.jumpTo('Strength')" class="abilitylink">Strength:</a> <a ng-click="controller.firstclick('trait1')" id="trait1" href="#">{{controller.trait1}}</a> <span id="strength"></span><span id="racialmod">{{controller.STR}}</span><span id="potentialStrMod"><a ng-click="controller.addTrait(0)">{{controller.potentialMods[0]}}</a></span></br>
-                <a ng-click="controller.jumpTo('Dexterity')" class="abilitylink">Dexterity:</a> <a ng-click="controller.firstclick('trait2')" id="trait2">{{controller.trait2}}</a> <span id="dexterity"></span><span id="racialmod">{{controller.DEX}}</span><span id="potentialDexMod"><a ng-click="controller.addTrait(1)">{{controller.potentialMods[1]}}</a></span></br>
-                <a ng-click="controller.jumpTo('Constitution')" class="abilitylink">Constitution:</a> <a ng-click="controller.firstclick('trait3')" id="trait3">{{controller.trait3}}</a> <span id="constitution"></span><span id="racialmod">{{controller.CON}}</span><span id="potentialConMod"><a ng-click="controller.addTrait(2)">{{controller.potentialMods[2]}}</a></span></br>
-                <a ng-click="controller.jumpTo('Wisdom')" class="abilitylink">Wisdom:</a> <a ng-click="controller.firstclick('trait4')" id="trait4">{{controller.trait4}}</a> <span id="wisdom"></span><span id="racialmod">{{controller.WIS}}</span><span id="potentialWisMod"><a ng-click="controller.addTrait(3)">{{controller.potentialMods[3]}}</a></span></br>
-                <a ng-click="controller.jumpTo('Intelligence')" class="abilitylink">Intelligence:</a> <a ng-click="controller.firstclick('trait5')" id="trait5">{{controller.trait5}}</a> <span id="intelligence"></span><span id="racialmod">{{controller.INT}}</span><span id="potentialIntMod"><a ng-click="controller.addTrait(4)">{{controller.potentialMods[4]}}</a></span></br>
-                <a ng-click="controller.jumpTo('Charisma')" class="abilitylink">Charisma:</a> <a ng-click="controller.firstclick('trait6')" id="trait6">{{controller.trait6}}</a> <span id="charisma"></span><span id="racialmod">{{controller.CHA}}</span></br>
-           </br><p id="optionalMessage"></p>
-             </div>
-            <div>
-                <dl>
-                    <dt>Proficiencies</dt>
-                    <dd><mark id="subracialProficiencies">{{controller.subrace}}</mark></dd>
-                    <dd ng-repeat="item in controller.classProficiencies | filter: controller.class"><mark id="classproficiencies">{{item.Proficiencies}}</mark></dd>
-                    <dd ng-repeat="item in controller.additionalProficiencies | filter: controller.background"><mark id="subraceproficiencies">{{item.Proficiencies}}</mark></dd>
-                </dl>
-                <dl>
-                    <dt>Subrace Abilities: </dt>
-                    <dd>{{controller.subraceabilities}}</dd>
-                </dl>
-                <input type="checkbox" ng-model="controller.checkBoxValue"/>
-                <b>Auto-Fill</b></br></br>
-                <form class="form-inline">
-                    <input placeholder="Character Name" id="chanameinput" class="form-control" ng-model="controller.characterName"/> <button class="btn btn-default" ng-click="controller.save()">Save</button>
-                </form>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-center">
+                        <h2 class="panel-header">
+                            <span>{{controller.title}}</span>
+                            <span>{{controller.createdCharacter[0]}}</span>
+                            <span>{{controller.createdCharacter[3]}}</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <!--ABILITY SCORES-->
+                        <table class="table abilityTable">
+                            <tbody>
+                                <tr class="abilitySwapTable">
+                                    <td><span class="abilityScoreSwapDisplay strColor" ng-click="controller.jumpTo('Strength')">Str</span></td>
+                                    <td><span class="abilityScoreSwapDisplay dexColor" ng-click="controller.jumpTo('Dexterity')">Dex</span></td>
+                                    <td><span class="abilityScoreSwapDisplay conColor" ng-click="controller.jumpTo('Constitution')">Con</span></td>
+                                    <td><span class="abilityScoreSwapDisplay intColor" ng-click="controller.jumpTo('Wisdom')">Int</span></td>
+                                    <td><span class="abilityScoreSwapDisplay wisColor" ng-click="controller.jumpTo('Intelligence')">Wis</span></td>
+                                    <td><span class="abilityScoreSwapDisplay chaColor" ng-click="controller.jumpTo('Charisma')">Cha</span><br /></td>
+                                </tr>
+                                <tr class="abilityScoreSwapDisplay abilitySwapTable">
+                                    <td>
+                                        <span title="STR" class="strColor"><a ng-click="controller.firstclick('trait1')" id="trait1" href="#">{{controller.trait1}}</a></span>
+                                        <span id="strength"></span><span id="racialmod">{{controller.STR}}</span><span id="potentialStrMod"><a ng-click="controller.addTrait(0)">{{controller.potentialMods[0]}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span title="DEX" class="dexColor"><a ng-click="controller.firstclick('trait2')" id="trait2" href="#">{{controller.trait2}}</a></span>
+                                        <span id="dexterity"></span><span id="racialmod">{{controller.DEX}}</span><span id="potentialDexMod"><a ng-click="controller.addTrait(1)">{{controller.potentialMods[1]}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span title="CON" class="conColor"><a ng-click="controller.firstclick('trait3')" id="trait3" href="#">{{controller.trait3}}</a></span>
+                                        <span id="constitution"></span><span id="racialmod">{{controller.CON}}</span><span id="potentialConMod"><a ng-click="controller.addTrait(2)">{{controller.potentialMods[2]}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span title="INT" class="intColor"><a ng-click="controller.firstclick('trait4')" id="trait4" href="#">{{controller.trait4}}</a></span>
+                                        <span id="intelligence"></span><span id="racialmod">{{controller.INT}}</span><span id="potentialIntMod"><a ng-click="controller.addTrait(3)">{{controller.potentialMods[3]}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span title="WIS" class="wisColor"><a ng-click="controller.firstclick('trait5')" id="trait5" href="#">{{controller.trait5}}</a></span>
+                                        <span id="wisdom"></span><span id="racialmod">{{controller.WIS}}</span><span id="potentialWisMod"><a ng-click="controller.addTrait(4)">{{controller.potentialMods[4]}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span title="CHA" class="chaColor"><a ng-click="controller.firstclick('trait6')" id="trait6" href="#">{{controller.trait6}}</a></span>
+                                        <span id="charisma"></span><span id="racialmod">{{controller.CHA}}</span><span id="potentialChaMod"><a ng-click="controller.addTrait(5)">{{controller.potentialMods[5]}}</a></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p id="optionalMessage"></p>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>Proficiencies</dt>
+                            <dd><mark id="subracialProficiencies">{{controller.subrace}}</mark></dd>
+                            <dd ng-repeat="item in controller.classProficiencies | filter: controller.class"><mark id="classproficiencies">{{item.Proficiencies}}</mark></dd>
+                            <dd ng-repeat="item in controller.additionalProficiencies | filter: controller.background"><mark id="subraceproficiencies">{{item.Proficiencies}}</mark></dd>
+                        </dl>
+                        <dl>
+                            <dt>Subrace Abilities: </dt>
+                            <dd>{{controller.subraceabilities}}</dd>
+                        </dl>
+                        <input type="checkbox" ng-model="controller.checkBoxValue" />
+                        <b>Auto-Fill</b></br></br>
+                        <form class="form-inline">
+                            <input placeholder="Character Name" id="chanameinput" class="form-control" ng-model="controller.characterName" /> <button class="btn btn-default" ng-click="controller.save()">Save</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div>
                 <h3>Proficiencies</h3>
@@ -116,6 +147,6 @@
                 </dl>
             </div>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-2"></div>
     </div>
 </div>

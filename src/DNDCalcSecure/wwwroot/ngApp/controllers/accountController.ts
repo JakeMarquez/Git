@@ -2,6 +2,7 @@ namespace DNDCalcSecure.Controllers {
 
     export class AccountController {
         public externalLogins;
+        public state;
         public equipmentActive = true;
         public editbox(){
             this.equipmentActive = false;
@@ -28,7 +29,8 @@ namespace DNDCalcSecure.Controllers {
             return this.accountService.getExternalLogins();
         }
 
-        constructor(private accountService: DNDCalcSecure.Services.AccountService, private $location: ng.ILocationService) {
+        constructor(private accountService: DNDCalcSecure.Services.AccountService,
+                    private $location: ng.ILocationService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
             });
@@ -41,6 +43,18 @@ namespace DNDCalcSecure.Controllers {
     export class LoginController {
         public loginUser;
         public validationMessages;
+        public stateActive;
+        public icons = {
+            "Microsoft": "fa fa-windows",
+            "Twitter": "fa fa-twitter-square",
+            "Google":  "fa fa-google-plus-square"
+        }
+
+        public closeValidation(index) {
+            console.log(index);
+            this.validationMessages.splice(index, 1);
+            console.log(this.validationMessages);
+        }
 
         public login() {
             this.accountService.login(this.loginUser).then(() => {
@@ -49,9 +63,11 @@ namespace DNDCalcSecure.Controllers {
                 this.validationMessages = results;
             });
         }
+
         public getUserName() {
             return this.accountService.getUserName();
         }
+
         public usernameCheck(username) {
           
              var answer =this.accountService.checkExistence(username)
@@ -59,7 +75,10 @@ namespace DNDCalcSecure.Controllers {
             return answer;
         }
 
-        constructor(private accountService: DNDCalcSecure.Services.AccountService, private $location: ng.ILocationService) { }
+      
+        constructor(private accountService: DNDCalcSecure.Services.AccountService,
+            private $location: ng.ILocationService, ) {
+        }
     }
 
 

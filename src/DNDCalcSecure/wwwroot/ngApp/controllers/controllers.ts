@@ -121,6 +121,7 @@ namespace DNDCalcSecure.Controllers {
         public message = 'Hello from the about page!';
     }
     export class CreationController {
+        public modalInstance;
         public Quote = {};
         public class;
         public race;
@@ -129,12 +130,15 @@ namespace DNDCalcSecure.Controllers {
         subraceTitles: string[];
         public selectedsubrace;
         
-        constructor(dndService: DNDCalcSecure.Services.DndService) {
+        constructor(public dndService: DNDCalcSecure.Services.DndService,
+            private $uibModal: angular.ui.bootstrap.IModalService,
+            private $scope: angular.IScope) {
             this.subraceTitles = ["+1 Wiz", "+2 Str", "+1 Str", "+1 Wiz", "+1 Int", "+1 Dex", "+1 Dex", "+1 Cha", "+1 Con"];
             this.subrace2.push({ race: "Hill Dwarf", title: "+1 Wiz" }, { race: "Mountain Dwarf", title: "+2 Str" }, { race: "Gray Dwarf", title: "+1 Str" }, { race: "Wood Elf", title: "+1 Wiz" }, { race: "High Elf", title: "+1 Int" }, { race: "Deep Gnome", title: "+1 Dex" }, { race: "Forest Gnome", title: "+1 Dex" }, { race: "Lightfoot Halfling", title: "+1 Cha" }, { race: "Stout Halfling", title: "+1 Con" });
             let rand = this.getRandNumb(0, 4);
             this.Quote = dndService.getQuote(rand);
         };
+
         public getRandNumb(max, min) {
             return Math.floor((Math.random() * (max - min) + min));
         }
@@ -144,6 +148,17 @@ namespace DNDCalcSecure.Controllers {
         }
         public savedata() {
             sessionStorage.setItem("char", this.class + "," + this.race + "," + this.selectedsubrace + "," + this.background);
+        }
+        public showModal() {
+            this.modalInstance = this.$uibModal.open({
+                templateUrl: 'ngApp/views/instructionsModal.html',
+                scope: this.$scope,
+                animation: true,
+                size: 'md'
+            });
+        }
+        public close() {
+            this.modalInstance.close();
         }
     }
 
@@ -219,6 +234,9 @@ namespace DNDCalcSecure.Controllers {
                 return "25 feet";
             }
         }
+
+
+
         public checkBoxValue;
         generateIdealsBondsFlaws() {
             var rand1 = this.getRandNumb(0,4);

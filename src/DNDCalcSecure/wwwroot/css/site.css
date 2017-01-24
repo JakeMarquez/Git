@@ -1,16 +1,7 @@
-@font-face {
-    font-family: aliensandcows;
-    src: url(/fonts/aliens_and_cows_trial.ttf);
-}
 @font-face{
     font-family: enchantedLand;
     src: url('/fonts/Enchanted Land.otf');
 }
-@font-face{
-    font-family: marketDeco;
-    src: url('/fonts/Market_Deco.ttf');
-}
-
 body {
     padding-top: 10px;
     padding-bottom: 20px;
@@ -18,6 +9,34 @@ body {
 }
 .bodyColumn{
     margin-right: 3%;
+}
+.modal {
+ overflow-y: auto;
+}
+
+.modal-open {
+ overflow: auto;
+}
+.modal-open[style] {
+    padding-right: 0px !important;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+ 
+::-webkit-scrollbar-track {
+    opacity: .01;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: lightgrey;   
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: white; 
 }
 
 /* Wrapping element */
@@ -38,6 +57,7 @@ body {
     padding: 5px;
 }
 .panel-header{
+    display: block;
     cursor: default;
     text-align: center;
     margin-top: 0%;
@@ -49,8 +69,62 @@ body {
     font-size: 1.5em;
     margin-bottom: 1%;
 }
+#loginbutton{
+    max-width: 100%;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3em;
+    font-size: 1.5em;
+}
+.affix {
+    top: 20px;
+  }
+.alert-warning{
+    text-align: center;
+    border-color: #158cba !important;
+    background-color: #6fd1f8 !important;
+    background-image: none;
+}
+
+.topLinkPanel{
+    position: static;
+    top: 20px;
+    bottom: 20px;
+}
 .tableRow{
     cursor: default;
+}
+.largeText{
+    font-size: 1.3em;
+}
+.socialProviders{
+    font-size: 2em;
+    margin-bottom: 0;
+}
+.socialProvider{
+    font-size: 2.7vw;
+}
+#socialProvidersPanel{
+    background-color: rgba(255, 255, 255, .5) !important;
+}
+.topRow{
+    margin-top: 10px;
+}
+.Microsoft:hover{
+    color: #289200;
+}
+.Twitter:hover{
+    color: #00aced;
+}
+.Google:hover{
+    color: #dd4b39;
+}
+.Microsoft, .Twitter, .Google{
+    color:#555555;
+}
+.Microsoft:hover, .Google:hover, .Twitter:hover{
+    text-decoration:none;
 }
 #quote {
     text-align: center;
@@ -63,20 +137,82 @@ body {
 #creationFormElement{
     margin-bottom: 0%;
 }
-.creationFormSubmit{
-    
+#creationFormSubmit{
+    margin-top: 4%;
+    height: 3em;
+    font-size: 1.5em;
 }
-.spinIcon{
+.creationFormDiv{
+    margin-bottom: 0px;
+}
+.creationInstructions{
+    display: inline-block;
+    position: relative;
+    font-size: 2em;
+    margin-top: -38px;
+    margin-right: .5%;
+    float: right;
+}
+.creationInstructions:hover{
+    color:grey;
+}
+.creationInformationTableLabel{
+    font-size: 2.5vw;
+    font-family: enchantedLand;
+}
+#Barbarian{
+    font-size: 1.5em !important;
+    padding-right: 4px;
+}
+@media only screen and (max-width: 991px){
+    .creationInformationTableLabel{
+        font-size: 1.6em;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .socialProvider{
+        font-size:3.5vw;
+    }
+}
+@media only screen and (max-width: 555px) {
+    .socialProvider{
+        font-size: 1.4em;
+        display: block !important;
+    }
+}
+.raceInformation{
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+.classInformation{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+.spinIcon1{
     border-radius: 50%;
   -webkit-transition: -webkit-transform .8s ease-in-out;
           transition:         transform .8s ease-in-out;
 }
-.spinIcon:hover{
+.spinIcon1:hover{
       -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
-#characterreadout {
-    margin-left: -80px;
+.spinIcon2{
+    border-radius: 50%;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+.spinIcon2:hover{
+      -webkit-transform: rotate(-360deg);
+          transform: rotate(-360deg);
+}
+.bumpUpLink{
+    opacity: 1;
+    font-size: 3em;
+    padding: 10px;
 }
 #classtitle, #classproficiencies{
        background-color: #e6ffa7;
@@ -87,7 +223,41 @@ body {
     height: 2em;
     font-size: 2em;
 }
-#subracetitle, #racialmod, #subracialProficiencies {
+.creationInformation{
+    padding: 12px 10px 10px 12px;
+    background: none;
+}
+.creationInformationText{
+    padding: 10px 10px 10px 10px;
+    display: block;
+    margin-left: 8px;
+    margin-right: 8px;
+    background: white;
+    border: none;
+    border-radius: 6px;
+}
+.creationInformationBorder{
+    padding-top: 5px !important;
+    padding: 15px;
+    border: 1px solid lightblue;
+    border-radius: 6px;
+}
+.creationInformationHeader{
+    color:deepskyblue;
+    font-weight: bold;
+    font-size: 3em;
+    border: 1px solid lightblue;
+    border-radius: 6px;
+}
+.raceDescription{
+    color: deepskyblue;
+}
+@media only screen and (max-width: 991px){
+    .raceDescription{
+        color: #555555;
+    }
+}
+#subracetitle, #subracialProficiencies {
         background-color: #fff4b7;
 }
 
@@ -113,6 +283,12 @@ body {
 }
 .abilitylink:hover {
     text-decoration: none;
+}
+.abilityTable{
+    margin-left: 3%;
+}
+.abilitySwapTable td{
+    width: 16.6%;
 }
 #loginerrors {
     list-style-type:none;
@@ -140,6 +316,10 @@ body {
     margin-left: .6%;
     margin-right: .5%;
 }
+.abilityScoreSwapDisplay{
+    color: black;
+    font-size: 1.5em;
+}
 .characterListBadge{
     margin-bottom: .5%;
 }
@@ -160,6 +340,16 @@ body {
 }
 .chaColor{
     background-color: rgba(127, 255, 250, .3);
+}
+.strColor, .dexColor, .conColor, .intColor, .wisColor, .chaColor{
+    padding: 2px;
+    cursor: default;
+    border: none;
+    border-radius: 6px;
+}
+.instructionsList{
+    font-size:1.4em;
+    margin-bottom: 0px;
 }
 
 
@@ -249,10 +439,8 @@ textarea {
     margin-top: 4px;
     color: black;
 }
-#registerMessage {
-    display: inline;
-    margin-top: 15px;
-    padding-top: 7px;
+#characterListPanel{
+    margin-bottom: 0px !important;
 }
 #superscript{
     font-style:normal;
@@ -271,6 +459,17 @@ textarea {
     margin-top: 3px;
     cursor: default;
 }
+#Barbarian, #Bard, #Cleric, #Druid, #Fighter, #Monk, #Ranger, #Rogue, #Paladin, #Sorcerer, #Warlock, #Wizard,
+#Dwarf, #Elf, .HalfElf, #Halfling, #Gnome, .HalfOrc, #Tiefling, #Acolyte, #Charlatan, #Criminal, #Entertainer,
+#Hermit, #Noble, #Outlander, #Sage, #Sailor, #Soldier, #Urchin, .GuildArtisan, .FolkHero {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1.6em;
+    text-align: center;
+    font-family: enchantedLand;
+}
+
+
 /*#navhighlight:hover {
     display: inline;
     color: #fff3b2;

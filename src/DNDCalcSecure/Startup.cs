@@ -102,6 +102,24 @@ namespace DNDCalcSecure
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
+            app.UseTwitterAuthentication(new TwitterOptions
+            {
+                ConsumerKey = Configuration["TwitterConsumerKey"],
+                ConsumerSecret = Configuration["TwitterConsumerSecret"]
+            });
+
+            app.UseGoogleAuthentication(new GoogleOptions
+            {
+                ClientId = Configuration["GoogleConsumerKey"],
+                ClientSecret = Configuration["GoogleConsumerSecret"]
+            });
+
+            app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions
+            {
+                ClientId = Configuration["MicrosoftConsumerKey"],
+                ClientSecret = Configuration["MicrosoftConsumerSecret"]
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -9,26 +9,25 @@
     <base href="/" />
 </head>
 <body ng-controller="AccountController as account">
-    <div class="container">
+    <div class="container" id="top">
         <center>
             <a href="/"><img src="~/images/logo.png" width="175" id="bannerLink"/></a><br />
-            @*NAVBAR*@
+                @*NAVBAR*@
             <span ng-show="account.isLoggedIn()">
-                
                 <a href="/creation" class="navlink"><mark class="navhighlight">Creation</mark></a>
             </span>
             <span ng-show="account.isLoggedIn()">
                 | <a href="/secret" class="navlink"><mark class="navhighlight">My Characters</mark></a> |
             </span> 
-            <a href="/login" class="navlink" ng-show="!account.isLoggedIn()"><mark class="navhighlight">Login</mark></a>
+            <a href="/login" id="loginLink" class="navlink" ng-show="!account.isLoggedIn()"><mark class="navhighlight">Login</mark></a>
             <a href="#" class="navlink" ng-click="account.logout()" ng-show="account.isLoggedIn()"><mark class="navhighlight">Logout</mark></a>
             <div ng-show="account.isLoggedIn()" id="loggedInUser">
                 [{{account.getUserName()}}]
             </div>
         </center>
-        <br/>
+        @*<br/>*@
         <ui-view></ui-view>
-
+        <small class="center-block text-center tableRow">Quest-Guide is an application built by Jacob Marquez</small>
     </div>
     <!-- Library Files -->
     <script src="/bower_components/angular/angular.js"></script>
