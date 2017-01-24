@@ -20,9 +20,9 @@ This application uses Social Provider Logins such as Twitter and Google Plus. Be
 Alternatively, you can comment out lines 105 - 121 in Startup.cs and the app will function without Social Provider Logins. Beware that while the app is not dependent on Social Provider Logins, certain aspects will be altered if they are not present. 
 
 Where to get OAuth Credentials:
-https://apps.twitter.com
-https://apps.dev.microsoft.com/
-https://console.developers.google.com/apis
+[Twitter](https://apps.twitter.com),
+[Microsoft](https://apps.dev.microsoft.com/),
+[Google Plus](https://console.developers.google.com/apis)
 
 ## Current Status
 V.1.3 - Social Provider Logins added including Google Plus, Twitter, and Microsoft. Facebook was considered but wont allow logins from users who arent administrator's on the application until the application has been released and is reviewed, so it was skipped. Creation page scaffolding was updated to avoid clipping issues. New "Link to Top" button added on the Creation page to help user quickly navigate the document.
