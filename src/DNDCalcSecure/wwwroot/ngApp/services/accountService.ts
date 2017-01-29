@@ -9,6 +9,11 @@ namespace DNDCalcSecure.Services {
 
             // store claims
             this.$window.sessionStorage.setItem('claims', JSON.stringify(userInfo.claims));
+
+            // usedCreationForm boolean // have they used the creation form before?
+            if (JSON.stringify(userInfo.usedCreationForm) == "false") {
+                this.$window.sessionStorage.setItem('newUser', 'true');
+            }
         }
 
         public getUserName() {
@@ -68,9 +73,12 @@ namespace DNDCalcSecure.Services {
         }
 
         // associate external login (e.g., Twitter) with local user account
-        public registerExternal(email) {
+        public registerExternal(user) {
             return this.$q((resolve, reject) => {
-                this.$http.post('/api/account/externalLoginConfirmation', { email: email })
+                this.$http.post('/api/account/externalLoginConfirmation', {
+                    email: user.email,
+                    username: user.username
+                })
                     .then((result) => {
                         this.storeUserInfo(result.data);
                         resolve(result);

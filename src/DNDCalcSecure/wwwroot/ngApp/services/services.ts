@@ -46,10 +46,46 @@ namespace DNDCalcSecure.Services {
         //parse IBF
 
         
-        public save(product) {
-            return this.characterResource.save(product).$promise;
+        public save(character) {
+            return this.$q((resolve, reject) => {
+                this.$http.post('/api/characters', character)
+                    .then((result) => {
+                        resolve(result);
+                        this.usedCreationForm();
+                    })
+                    .catch((result) => {
+                        var messages = this.flattenValidation(result.data);
+                        reject(messages);
+                    });
+            });
         }
-        constructor($resource: ng.resource.IResourceService) {
+
+        private flattenValidation(modelState) {
+            let messages = [];
+            for (let prop in modelState) {
+                messages = messages.concat(modelState[prop]);
+            }
+            return messages;
+        }
+
+        public newUser() {
+            if (this.$window.sessionStorage.getItem("newUser") == "true") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public usedCreationForm() {
+            this.$window.sessionStorage.removeItem("newUser");
+        }
+
+
+        constructor(private $resource: ng.resource.IResourceService,
+                    private $q: ng.IQService,
+                    private $http: ng.IHttpService,
+                    private $window: ng.IWindowService) {
             this.characterResource = $resource('/api/characters/:id');
         }
     }

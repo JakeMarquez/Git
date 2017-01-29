@@ -11,5 +11,7 @@ namespace DNDCalcSecure.ViewModels.Account
         public string UserName { get; set; }
 
         public Dictionary<string,string> Claims { get; set; }
+
+        public bool usedCreationForm { get; set; }
     }
 }

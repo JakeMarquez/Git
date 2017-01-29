@@ -6,7 +6,10 @@
         </div>
         <div class="col-xs-10 col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading"><h2 class="panel-header">New Character </h2><i class="fa fa-info-circle creationInstructions" ng-click="controller.showModal()"></i></div> 
+                <div class="panel-heading"><h2 class="panel-header">New Character </h2>
+                    <i class="fa fa-info-circle creationInstructions" tooltip-placement="bottom" tooltip-class="hugeText"
+                       uib-tooltip="{{controller.tooltip.message}}" tooltip-is-open="{{controller.tooltip.open}}" ng-click="controller.showModal()"></i>
+                </div> 
                 <div class="panel-body">
                     <form method="get" action="/save" ng-submit="controller.savedata()" id="creationFormElement">
                         <div class="form-group creationFormDiv">
@@ -86,7 +89,7 @@
         <div class="col-xs-10 col-md-8 creationInformation">
             <div class="creationInformationText">
                 <div class="creationInformationBorder">
-                    <div class="text-center creationInformationHeader">Class List</div>
+                    <div id="classList" class="text-center creationInformationHeader">Class List</div>
                     <div class="row largeText raceInformation">
                         <div class="col-md-3 creationInformationTableLabel">
                             <strong><mark id="Barbarian">Barbarian</mark></strong>
@@ -222,7 +225,7 @@
                 </div>
                     <hr />
                 <div class="creationInformationBorder">
-                    <div class="text-center creationInformationHeader">Race List</div>
+                    <div id="raceList" class="text-center creationInformationHeader">Race List</div>
                     <div class="row largeText classInformation">
                         <div class="creationInformationTableLabel">
                             <strong><mark id="Dwarf">Dwarf</mark></strong>
@@ -340,7 +343,7 @@
                 </div>
                     <hr />
                 <div class="creationInformationBorder">
-                    <div class="text-center creationInformationHeader">Background List</div>
+                    <div id="backgroundList" class="text-center creationInformationHeader">Background List</div>
                     <div class="row largeText classInformation">
                         <div class="creationInformationTableLabel">
                             <strong><mark id="Acolyte">Acolyte</mark></strong>
@@ -484,7 +487,7 @@
                             <br/><strong>Proficiencies:</strong> Athletics, Intimidation, One Board-Game, Vehicles (land)
                         </div>
                     </div>
-                    <div class="row largeText classInformation">
+                    <div id="bottom" class="row largeText classInformation">
                         <div class="creationInformationTableLabel">
                             <strong><mark id="Urchin">Urchin</mark></strong>
                         </div>
@@ -497,12 +500,17 @@
                         </div>
                     </div>
                 </div>
-                <p >TOP</p>
             </div>
         </div>
-            <div class="col-xs-1 col-md-2 scrollspy">
-                <div id="bumpUpLink" class="panel panel-defualt bumpUpLink" ng-click="controller.jumpTo('top')">
-                    <i class="fa fa-chevron-circle-up"></i>
+            <div class="col-xs-1 col-md-2">
+                <div id="bumpUpLink" style="opacity: 0;" class="panel panel-defualt bumpUpLink affix fadeOut">
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('top')"><i class="fa fa-chevron-circle-up"></i></button>
+                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('classList')"><i class="fa fa-cog"></i></button>
+                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('raceList')"><i class="fa fa-user-circle-o"></i></button>
+                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('backgroundList')"><i class="fa fa-id-card"></i></button>
+                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('bottom')"><i class="fa fa-chevron-circle-down"></i></button>
+                    </div>
                 </div>  
             </div>
     </div>

@@ -2,44 +2,47 @@
     <div class="row">
         <div class="col-xs-2 col-md-3 col-lg-3"></div>
         <div class="col-xs-8 col-md-6 col-lg-6">
+            <div uib-alert close="controller.closeValidation($index)" ng-repeat="error in controller.validationMessages">
+                {{error}}
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Login
+                    <h2 class="panel-header">Register</h2>
                 </div>
-                <div class="panel-body">
-                    heres where you login
+                <div class="panel-body noPaddingTop">
+                    <fieldset>
+                        <form ng-submit="controller.register()" name="registerForm" id="registerForm" novalidate>
+                            <div>
+                                <label class="inputlabel formLabel"><u>Email</u></label>
+                                <input name="email" class="form-control logininput creationFormInput" placeholder="Enter Email" 
+                                       ng-model="controller.registerUser.email" style="text-align:center;" maxlength="40" ng-required="true"/>
+                            </div>
+                            <div>
+                                <label class="inputlabel formLabel"><u>Username</u></label>
+                                <input name="username" class="form-control logininput creationFormInput" placeholder="Enter  Username"
+                                        ng-model="controller.registerUser.username" style="text-align:center;" maxlength="15" ng-required="true"/>
+                            </div>
+                            <div>
+                                <label class="inputlabel formLabel"><u>Password</u></label>
+                                <input name="password" class="form-control logininput creationFormInput" type="password" placeholder="Enter Password"
+                                        ng-model="controller.registerUser.password" style="text-align:center;" maxlength="20" ng-required="true"/>
+                            </div>
+                            <div>
+                                <label class="inputlabel" id="confirmPassLabel"><u>Confirm Password</u></label>
+                                <input name="confirmPassword" class="form-control logininput creationFormInput" type="password" placeholder="Re-Enter Password"
+                                        ng-model="controller.registerUser.confirmPassword" style="text-align:center;" maxlength="20" ng-required="true"/>
+                            </div>
+                            <input class="btn btn-info btn-lg btn-block" type="submit" value="Register" id="registerbutton" ng-disabled="registerForm.$invalid"/>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>
         <div class="col-xs-2 col-md-3 col-lg-3"></div>
     </div>
 </div>
-<fieldset>
-<center>
-    <ul id="loginerrors">
-        <li ng-repeat="message in controller.validationMessages">
-            {{message}}
-        </li>
-    </ul>
-
-    <form ng-submit="controller.register()">
-        <div>
-            <label class="inputlabel"><u>Email</u></label>
-            <input class="form-control logininput" ng-model="controller.registerUser.email" style="text-align:center;" maxlength="40"/>
-        </div>
-        <div>
-            <label class="inputlabel"><u>Username</u></label>
-            <input class="form-control logininput" ng-model="controller.registerUser.username" style="text-align:center;" maxlength="10"/>
-        </div>
-        <div>
-            <label class="inputlabel"><u>Password</u></label>
-            <input class="form-control logininput" type="password" ng-model="controller.registerUser.password" style="text-align:center;" maxlength="20"/>
-        </div>
-        <div>
-            <label class="inputlabel"><u>Confirm Password</u></label>
-            <input class="form-control logininput" type="password" ng-model="controller.registerUser.confirmPassword" style="text-align:center;" maxlength="20"/>
-        </div>
-        <input class="btn btn-default" type="submit" value="Register" id="loginbutton" /><br /><br />
-    </form>
-</center>
-</fieldset>
+<style>
+    #loginLink {
+        display: none;
+    }
+</style>

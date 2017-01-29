@@ -51,9 +51,7 @@ namespace DNDCalcSecure.Controllers {
         }
 
         public closeValidation(index) {
-            console.log(index);
             this.validationMessages.splice(index, 1);
-            console.log(this.validationMessages);
         }
 
         public login() {
@@ -94,6 +92,12 @@ namespace DNDCalcSecure.Controllers {
             });
         }
 
+        public closeValidation(index) {
+            console.log(index);
+            this.validationMessages.splice(index, 1);
+            console.log(this.validationMessages);
+        }
+
         constructor(private accountService: DNDCalcSecure.Services.AccountService, private $location: ng.ILocationService) { }
     }
 
@@ -106,12 +110,18 @@ namespace DNDCalcSecure.Controllers {
         public validationMessages;
 
         public register() {
-            this.accountService.registerExternal(this.registerUser.email)
+            this.accountService.registerExternal(this.registerUser)
                 .then((result) => {
                     this.$location.path('/');
                 }).catch((result) => {
                     this.validationMessages = result;
                 });
+        }
+
+        public closeValidation(index) {
+            console.log(index);
+            this.validationMessages.splice(index, 1);
+            console.log(this.validationMessages);
         }
 
         constructor(private accountService: DNDCalcSecure.Services.AccountService, private $location: ng.ILocationService) {}

@@ -46,7 +46,8 @@ namespace DNDCalcSecure.Controllers
             var vm = new UserViewModel
             {
                 UserName = user.UserName,
-                Claims = claims.ToDictionary(c => c.Type, c => c.Value)
+                Claims = claims.ToDictionary(c => c.Type, c => c.Value),
+                usedCreationForm = user.usedCreationForm
             };
             return vm;
         }
@@ -99,7 +100,7 @@ namespace DNDCalcSecure.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, usedCreationForm = false };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -240,7 +241,7 @@ namespace DNDCalcSecure.Controllers
                     return BadRequest(this.ModelState);
                     //return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, usedCreationForm = false };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

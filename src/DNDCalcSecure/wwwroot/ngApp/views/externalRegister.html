@@ -1,18 +1,38 @@
-<fieldset>
-    <legend>Complete Registration</legend>
-
-    <ul>
-        <li ng-repeat="message in controller.validationMessages">
-            {{message}}
-        </li>
-    </ul>
-
-    <form ng-submit="controller.register()">
-        <div>
-            <label>Email:</label>
-            <input ng-model="controller.registerUser.email" />
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2 col-md-3"></div>
+        <div class="col-xs-8 col-md-6">
+            <div uib-alert close="controller.closeValidation($index)" ng-repeat="error in controller.validationMessages">
+                {{error}}
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-header">Register</h2>
+                </div>
+                <div class="panel-body">
+                    <fieldset>
+                        <form ng-submit="controller.register()" name="externalRegisterForm" novalidate>
+                            <div>
+                                <label class="inputlabel formLabel">Email:</label>
+                                <input class="form-control logininput creationFormInput" ng-model="controller.registerUser.email" placeholder="Enter Email"
+                                       style="text-align:center;" maxlength="40" ng-required="true"/>
+                            </div>
+                            <div>
+                                <label class="inputlabel formLabel">Username:</label>
+                                <input class="form-control logininput creationFormInput" ng-model="controller.registerUser.username" placeholder="Enter Username"
+                                       style="text-align:center;" maxlength="15" ng-required="true" />
+                            </div>
+                            <input class="btn btn-info btn-lg btn-block" type="submit" value="Register" id="externalregisterbutton" ng-disabled="externalRegisterForm.$invalid" />
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
         </div>
-        <input type="submit" value="Register" />
-    </form>
-
-</fieldset>
+        <div class="col-xs-2 col-md-3"></div>
+    </div>
+</div>
+<style>
+    #loginLink {
+        display: none;
+    }
+</style>

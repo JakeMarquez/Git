@@ -129,6 +129,7 @@ namespace DNDCalcSecure.Controllers {
         subrace2 = [];
         subraceTitles: string[];
         public selectedsubrace;
+        public tooltip = { open: false, message: "" };
         
         constructor(public dndService: DNDCalcSecure.Services.DndService,
             private $uibModal: angular.ui.bootstrap.IModalService,
@@ -137,7 +138,20 @@ namespace DNDCalcSecure.Controllers {
             this.subrace2.push({ race: "Hill Dwarf", title: "+1 Wiz" }, { race: "Mountain Dwarf", title: "+2 Str" }, { race: "Gray Dwarf", title: "+1 Str" }, { race: "Wood Elf", title: "+1 Wiz" }, { race: "High Elf", title: "+1 Int" }, { race: "Deep Gnome", title: "+1 Dex" }, { race: "Forest Gnome", title: "+1 Dex" }, { race: "Lightfoot Halfling", title: "+1 Cha" }, { race: "Stout Halfling", title: "+1 Con" });
             let rand = this.getRandNumb(0, 4);
             this.Quote = dndService.getQuote(rand);
+            if (this.dndService.newUser()) { this.tooltip.open = true; this.tooltip.message = "Click Me!" };
+            window.addEventListener("scroll", this.scrollEvent, false);
         };
+
+        public scrollEvent() {
+            if (window.scrollY > 800) {
+                document.getElementById("bumpUpLink").setAttribute("class", "panel panel-default bumpUpLink affix fadeIn");
+                document.getElementById("bumpUpLink").setAttribute("style", "");
+            };
+            if (window.scrollY < 800) {
+                document.getElementById("bumpUpLink").setAttribute("class", "panel panel-default bumpUpLink affix fadeOut");
+                document.getElementById("bumpUpLink").setAttribute("style", "opacity: 0;");
+            };
+        }
 
         public getRandNumb(max, min) {
             return Math.floor((Math.random() * (max - min) + min));
@@ -163,8 +177,10 @@ namespace DNDCalcSecure.Controllers {
     }
 
     export class SaveController {
+        public validationMessages;
         public createdCharacter; // class, race, subrace, background
         public characterName;
+        public characterProficiencies;
         public title;
         public class;
         public subrace;
@@ -179,6 +195,9 @@ namespace DNDCalcSecure.Controllers {
         public subracialMods = [];
         public classProficiencies = [];
         public additionalProficiencies = [];
+        public modalInstance;
+        public tooltip = { open: false, message: "" };
+
         //ABILITY SCORE GENERATOR
         public getRandNumb(max, min) {
             return Math.floor((Math.random() * (max - min) + min));
@@ -197,12 +216,15 @@ namespace DNDCalcSecure.Controllers {
             if (this.traitswap.clicked == true) {
                 this.traitswap2.clicked = true;
                 this.traitswap2.trait = trait;
+                var cList = document.getElementById("td_" + this.traitswap.trait).classList.toString().replace(" preSwapTableData","");
+                var clicked = document.getElementById("td_" + this.traitswap.trait).setAttribute("class", cList);
                 this.swapmethod();
                 return this.traitswap2;
             }
             this.traitswap.clicked = true;
             this.traitswap.trait = trait;
-            //console.log(this.traitswap)
+            var classList = document.getElementById("td_" + trait).classList.toString();
+            var clicked = document.getElementById("td_" + trait).setAttribute("class", classList + " preSwapTableData");
         }
 
         public swapmethod() {
@@ -215,8 +237,25 @@ namespace DNDCalcSecure.Controllers {
 
         //ABILITY SCORE GENERATOR
 
+        //Primary abilities for class method
+        public primaryAbilities(className) {
+            var p = {
+                "Barbarian": "Strength and Dexterity",
+                "Bard": "Dexterity and Charisma",
+                "Cleric": "Wisdom and Charisma",
+                "Druid": "Intelligence and Wisdom",
+                "Fighter": "Strength and Dexterity",
+                "Monk": "Strength and Dexterity",
+                "Ranger": "Dexterity and Strength",
+                "Rogue": "Dexterity and Intelligence",
+                "Paladin": "Strength and Charisma",
+                "Sorcerer": "Constitution and Charisma",
+                "Warlock": "Wisdom and Charisma",
+                "Wizard": "Intelligence and Wisdom"
+            };
+            return p[className];
+        }
 
-      
         // COMPILE AND SAVE TO DATABASE METHOD
         bonusCheck(mod) {
             if (parseInt(mod)) {
@@ -261,6 +300,15 @@ namespace DNDCalcSecure.Controllers {
                 return '0';
             }
         };
+
+        public proficiencyScrape(objName, keyType, key) {
+            for (var x = 0; x < objName.length; x++) {
+                if (objName[x][keyType] == key) {
+                    return objName[x].Proficiencies;
+                }
+            }
+        };
+
         public save() {
             console.log(this.checkBoxValue);
             var str = this.bonusCheck(this.STR);
@@ -284,7 +332,7 @@ namespace DNDCalcSecure.Controllers {
                 'Race': this.createdCharacter[1],
                 'Subrace': this.title,
                 'Background': this.background,
-                'Proficiencies': this.subrace + ', ' + document.getElementById('classproficiencies').innerText + ', ' + document.getElementById('subraceproficiencies').innerText,
+                'Proficiencies': this.subrace + ', ' + this.proficiencyScrape(this.classProficiencies, "class", this.class) + ', ' + this.proficiencyScrape(this.additionalProficiencies, "background", this.background),
                 'Abilities': this.subraceabilities,
                 'Speed': this.speedCheck(this.createdCharacter[1]),
                 'IBF': IdealsBondsFlaws,
@@ -292,9 +340,12 @@ namespace DNDCalcSecure.Controllers {
                 'IsPublic': true,
                 'Equipment': "dogs"
             };
+            console.log(newChar);
             this.dndService.save(newChar).then(() => {
                 window.sessionStorage.removeItem('char');
                 this.$state.go('home');
+            }).catch((results) => {
+                this.validationMessages = results;
             });
         }
         //simple save
@@ -370,15 +421,45 @@ namespace DNDCalcSecure.Controllers {
             var select = document.getElementById(link);
             select.scrollIntoView();
         }
-       
+
+        // MODAL
+        public showModal() {
+            this.modalInstance = this.$uibModal.open({
+                templateUrl: 'ngApp/views/instructionsModal2.html',
+                scope: this.$scope,
+                animation: true,
+                size: 'md'
+                });
+        }
+
+        public showModalProficiencies() {
+            this.modalInstance = this.$uibModal.open({
+                templateUrl: 'ngApp/views/proficiencyModal.html',
+                scope: this.$scope,
+                animation: true,
+                size: 'md'
+                });
+        }
+
+        public close() {
+            this.modalInstance.close();
+        }
+
+        public closeValidation(index) {
+            this.validationMessages.splice(index, 1);
+        }
 
         //CONSTRUCTOR
-        constructor(public dndService: DNDCalcSecure.Services.DndService, public accountService: DNDCalcSecure.Services.AccountService, public $state: ng.ui.IStateService) {
-            console.log(accountService.isLoggedIn());
+        constructor(public dndService: DNDCalcSecure.Services.DndService,
+                    public accountService: DNDCalcSecure.Services.AccountService,
+                    public $state: ng.ui.IStateService,
+                    private $uibModal: angular.ui.bootstrap.IModalService,
+                    private $scope: angular.IScope) {
+            if (this.dndService.newUser()) { this.tooltip.open = true; this.tooltip.message = "Click Me!" };
             this.createdCharacter = sessionStorage.getItem("char").split(",");
             this.class = this.createdCharacter[0];
             this.background = this.createdCharacter[3];
-            this.title = this.createdCharacter[2];
+            this.title = this.createdCharacter[2].toString().trim();
             if (this.createdCharacter[2] == 'undefined') { this.title = this.createdCharacter[1] };
             if (this.title == "Half Elf") { this.halfElfsAreStupid(); };
             console.log(this.subrace);

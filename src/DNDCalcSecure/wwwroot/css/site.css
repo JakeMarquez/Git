@@ -2,6 +2,7 @@
     font-family: enchantedLand;
     src: url('/fonts/Enchanted Land.otf');
 }
+
 body {
     padding-top: 10px;
     padding-bottom: 20px;
@@ -13,7 +14,26 @@ body {
 .modal {
  overflow-y: auto;
 }
+.alert{
+    margin-bottom: 10px;
+}
+.vertNavBar{
+    background-color: rgba(255,255,255,0);
+   padding: 20px 0px 20px 0px;
+   border: none !important;
+}
+.vertNavBar.active, .vertNavBar.active.focus, .vertNavBar.focus, .vertNavBar:active.focus, .vertNavBar:active:focus, .vertNavBar:focus{
+    outline:0 !important;
+}
+.vertNavBar:hover{
+    color:gray;
+}
 
+@media only screen and (max-width: 555px){
+    .vertNavBar{
+        padding: 40px 0px 40px 0px;
+    }
+}
 .modal-open {
  overflow: auto;
 }
@@ -65,11 +85,29 @@ body {
     font-family: enchantedLand;
     font-size: 3em;
 }
+.lowOpacity{
+    opacity: .7;
+}
+.opacityHover:hover{
+    opacity: .9;
+}
+.noPaddingTop{
+    padding-top: 0;
+}
+.noMarginBottom{
+    margin-bottom: 0;
+}
+.smallPadding{
+    padding-top: 0;
+    padding-bottom: 3%;
+    padding-right: 3%;
+    padding-left: 3%
+}
 .versionTable{
     font-size: 1.5em;
     margin-bottom: 1%;
 }
-#loginbutton{
+#loginbutton, #registerbutton, #externalregisterbutton{
     max-width: 100%;
     margin-top: 4%;
     margin-left: auto;
@@ -77,6 +115,7 @@ body {
     height: 3em;
     font-size: 1.5em;
 }
+
 .affix {
     top: 20px;
   }
@@ -97,6 +136,33 @@ body {
 }
 .largeText{
     font-size: 1.3em;
+}
+.hugeText{
+    font-size: 1.5em;
+}
+.fadeIn{
+    animation-duration: 1s;
+    animation-name: fadein;
+}
+@keyframes fadein{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fadeOut{
+    animation-duration: 1s;
+    animation-name: fadeout;
+}
+@keyframes fadeout{
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 .socialProviders{
     font-size: 2em;
@@ -132,13 +198,19 @@ body {
 #headlogo {
     margin-left:-34px;
 }
-#theform {
+#registerForm{
+    margin-bottom: 0;
 }
 #creationFormElement{
     margin-bottom: 0%;
 }
 #creationFormSubmit{
     margin-top: 4%;
+    height: 3em;
+    font-size: 1.5em;
+}
+#saveFormSubmit{
+    margin-top: 1%;
     height: 3em;
     font-size: 1.5em;
 }
@@ -159,6 +231,11 @@ body {
 .creationInformationTableLabel{
     font-size: 2.5vw;
     font-family: enchantedLand;
+}
+.proficiencyTableLabel{
+    width: 30%;
+    font-weight:bold;
+    text-decoration: underline;
 }
 #Barbarian{
     font-size: 1.5em !important;
@@ -210,8 +287,8 @@ body {
           transform: rotate(-360deg);
 }
 .bumpUpLink{
-    opacity: 1;
-    font-size: 3em;
+    right: 2%;
+    font-size: 5vw;
     padding: 10px;
 }
 #classtitle, #classproficiencies{
@@ -224,7 +301,7 @@ body {
     font-size: 2em;
 }
 .creationInformation{
-    padding: 12px 10px 10px 12px;
+    padding: 12px 0px 10px 12px;
     background: none;
 }
 .creationInformationText{
@@ -272,6 +349,11 @@ body {
     text-align: center;
     font-size: 2.5em;
 }
+#confirmPassLabel{
+    display: block;
+    text-align: center;
+    font-size: 2.2em;
+}
 #raceselect {
     color: #232323;
 }
@@ -285,7 +367,8 @@ body {
     text-decoration: none;
 }
 .abilityTable{
-    margin-left: 3%;
+    text-align:center;
+    /*margin-left: 3%;*/
 }
 .abilitySwapTable td{
     width: 16.6%;
@@ -318,7 +401,7 @@ body {
 }
 .abilityScoreSwapDisplay{
     color: black;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 .characterListBadge{
     margin-bottom: .5%;
@@ -393,12 +476,13 @@ textarea {
 }
 
 #trait1, #trait2, #trait3, #trait4, #trait5, #trait6{
+    text-decoration: none;
     color: black;
 }
 #trait1:hover, #trait2:hover, #trait3:hover, #trait4:hover, #trait5:hover, #trait6:hover {
-    background-color:honeydew;
     text-decoration:none;
 }
+
 #potentialStrMod:active:after, #potentialDexMod:active:after, #potentialConMod:active:after, #potentialWisMod:active:after, #potentialIntMod:active:after {
     display:none;
 }
@@ -449,6 +533,14 @@ textarea {
 #mycharactername {
     background-color: #f4ffbd;
 }
+.tipText{
+    font-size: 1.5vw;
+}
+@media only screen and (max-width: 551px){
+    .tipText{
+        font-size: 12px;
+    }
+}
 .subscript{
     color: #1984ae;
 }
@@ -468,7 +560,24 @@ textarea {
     text-align: center;
     font-family: enchantedLand;
 }
-
+@keyframes blink{
+    0% { opacity: 1;}
+    50% { opacity: 0;}
+    100% { opacity: 1;}
+}
+.preSwapTableData{
+    animation-duration: 1s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+#newCharacterNameInput{
+    width: 100%;
+    max-width: 100%;
+    height: 2em;
+    font-size: 2em;
+    text-align: center;
+}
 
 /*#navhighlight:hover {
     display: inline;

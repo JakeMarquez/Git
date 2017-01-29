@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using DNDCalcSecure.Services;
 using DNDCalcSecure.Models;
 using DNDCalcSecure.Data;
+using DNDCalcSecure.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,11 +16,15 @@ namespace DNDCalcSecure.API
     [Route("api/[controller]")]
     public class CharactersController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private IList<Character> characterResource;
         private ApplicationDbContext db;
 
-        public CharactersController(CharacterService characterService)
+        public CharactersController(
+            CharacterService characterService,
+            UserManager<ApplicationUser> userManager)
         {
+            this._userManager = userManager;
             this.characterResource = characterService.listCharacters();
             this.db = characterService.db;
         }
@@ -38,7 +44,7 @@ namespace DNDCalcSecure.API
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Character character)
+        public IActionResult Post([FromBody]CharacterVM character)
         {
             if (character == null) //modelstate checks the database validation attributes for this info
             {
@@ -50,8 +56,26 @@ namespace DNDCalcSecure.API
             }
             if (character.Id == 0)
             {
-                this.db.Characters.Add(character);
+                var newCharacter = new Character() {
+                    Name = character.Name,
+                    Author = character.Author,
+                    AbilityScores = character.AbilityScores,
+                    Class = character.Class,
+                    Race = character.Race,
+                    Subrace = character.Subrace,
+                    Background = character.Background,
+                    Proficiencies = character.Proficiencies,
+                    Abilities = character.Abilities,
+                    Speed = character.Speed,
+                    IBF = character.IBF,
+                    SpellSlots = character.SpellSlots,
+                    Equipment = character.Equipment,
+                    IsPublic = character.IsPublic
+                };
+                this.usedCreationForm().Wait();
+                this.db.Characters.Add(newCharacter);
                 this.db.SaveChanges();
+                return Ok(this.ModelState);
             }
             else
             {
@@ -74,6 +98,16 @@ namespace DNDCalcSecure.API
 
             return Ok(character);
         }
+        /// <summary>
+        /// Checks if the user has used this form before and if its their first time it changes it to true
+        /// </summary>
+        /// <returns>bool</returns>
+        private async Task usedCreationForm()
+        {
+            var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (currentUser.usedCreationForm.Equals(true)) { return; };
+            if (currentUser.usedCreationForm.Equals(false)) { currentUser.toggle(); return; }
+        }
 
         // PUT api/values/5
         [HttpPut("{id}")]
@@ -86,5 +120,6 @@ namespace DNDCalcSecure.API
         public void Delete(int id)
         {
         }
+
     }
 }
