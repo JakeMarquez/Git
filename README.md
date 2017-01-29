@@ -1,5 +1,5 @@
 # Quest-Guide
-A website in progress aiming to simplify DND character creation, and facilitate Dungeon Master organization.
+A website in progress aiming to simplify DND character creation, and facilitate Dungeon Master organization. To view progress on Quest-Guide, visit the DEV-LOG.MD file.
 
 ## Motivation
 
