@@ -33,7 +33,7 @@
                         <div class="form-group creationFormDiv">
                             <label for="Race" class="formLabel"><a ng-click="controller.jumpTo(controller.race)"
                              id="raceselect"><i class="fa fa-user-circle-o spinIcon2"></i></a> Race</label>
-                            <select class="form-control creationFormInput" id="Race" ng-model="controller.race">
+                            <select class="form-control creationFormInput" id="Race" ng-model="controller.race" ng-change="controller.resetSubrace()">
                                 <option title="+2 Con">Dwarf</option>
                                 <option title="+2 Dex">Elf</option>
                                 <option title="+2 Dex">Halfling</option>
@@ -46,11 +46,10 @@
                             </select>
                         </div>
                         <div class="form-group creationFormDiv">
-                            <label for="SubRace" class="formLabel"><a ng-click="controller.jumpTo(controller.selectedsubrace)" 
+                            <label for="SubRace" class="formLabel"><a ng-click="controller.jumpTo(controller.selectedSubrace)" 
                               id="raceselect"><i class="fa fa-user-circle spinIcon1"></i></a> Subrace</label>
-                            <select class="form-control creationFormInput" id="SubRace" ng-model="controller.selectedsubrace">
-                                <option title="{{item.title}}" ng-repeat="item in controller.subrace2 | filter: controller.race">
-                                {{item.race}}</option>
+                            <select class="form-control creationFormInput" id="SubRace" ng-model="controller.selectedSubrace">
+                                <option title="{{item.title}}" ng-repeat="item in controller.subrace2 | filter: controller.race" >{{item.race}}</option>
                             </select>
                         </div>
                         <div class="form-group creationFormDiv">
@@ -330,6 +329,17 @@
                     </div>
                     <div class="row largeText classInformation">
                         <div class="creationInformationTableLabel">
+                            <strong><mark class="HalfOrc" id="Human">Human</mark></strong>
+                        </div>
+                        <div class="text-justify">
+                            Just as readily as they mix with each other, humans mingle with members of other races. They get along
+                            with almost everyone, though they might not be close to many. Humans serve as ambassadors, diplomats,
+                            magistrates, merchants, and functionaries of all kinds. Humans get +1 to every ability, can speak, read, and write
+                            common and once extra language of your choice, and vary on alignment. 
+                        </div>
+                    </div>
+                    <div class="row largeText classInformation">
+                        <div class="creationInformationTableLabel">
                             <strong><mark id="Tiefling">Tiefling</mark></strong>
                         </div>
                         <div class="text-justify">
@@ -504,12 +514,17 @@
         </div>
             <div class="col-xs-1 col-md-2">
                 <div id="bumpUpLink" style="opacity: 0;" class="panel panel-defualt bumpUpLink affix fadeOut">
-                    <div class="btn-group-vertical">
-                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('top')"><i class="fa fa-chevron-circle-up"></i></button>
-                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('classList')"><i class="fa fa-cog"></i></button>
-                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('raceList')"><i class="fa fa-user-circle-o"></i></button>
-                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('backgroundList')"><i class="fa fa-id-card"></i></button>
-                        <button type="button" class="btn largeText vertNavBar" ng-click="controller.jumpTo('bottom')"><i class="fa fa-chevron-circle-down"></i></button>
+                    <div class="btn-group-vertical vertNavBarDiv" id="vertNavBarDiv">
+                        <button type="button" class="btn largeText vertNavBar vnbButton" ng-click="controller.jumpTo('top')">
+                            <i class="fa fa-chevron-circle-up"></i></button>
+                        <button type="button" class="btn largeText vertNavBar vnbButton" ng-click="controller.jumpTo('classList')">
+                            <i class="fa fa-cog"></i></button>
+                        <button type="button" class="btn largeText vertNavBar vnbButton" ng-click="controller.jumpTo('raceList')">
+                            <i class="fa fa-user-circle-o"></i></button>
+                        <button type="button" class="btn largeText vertNavBar vnbButton" ng-click="controller.jumpTo('backgroundList')">
+                            <i class="fa fa-id-card"></i></button>
+                        <button type="button" class="btn largeText vertNavBar vnbButton" ng-click="controller.jumpTo('bottom')">
+                            <i class="fa fa-chevron-circle-down"></i></button>
                     </div>
                 </div>  
             </div>

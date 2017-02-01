@@ -128,9 +128,10 @@ namespace DNDCalcSecure.Controllers {
         public background;
         subrace2 = [];
         subraceTitles: string[];
-        public selectedsubrace;
+        public selectedSubrace;
         public tooltip = { open: false, message: "" };
-        
+        public scrollListener;
+
         constructor(public dndService: DNDCalcSecure.Services.DndService,
             private $uibModal: angular.ui.bootstrap.IModalService,
             private $scope: angular.IScope) {
@@ -139,19 +140,34 @@ namespace DNDCalcSecure.Controllers {
             let rand = this.getRandNumb(0, 4);
             this.Quote = dndService.getQuote(rand);
             if (this.dndService.newUser()) { this.tooltip.open = true; this.tooltip.message = "Click Me!" };
-            window.addEventListener("scroll", this.scrollEvent, false);
+            this.scrollListener = window.addEventListener("scroll", this.scrollEvent, false);
         };
 
+
         public scrollEvent() {
+            if ((window.scrollY % 2) == 1) { return; };
             if (window.scrollY > 800) {
+                //animation
                 document.getElementById("bumpUpLink").setAttribute("class", "panel panel-default bumpUpLink affix fadeIn");
                 document.getElementById("bumpUpLink").setAttribute("style", "");
+                    //buttons being enabled
+                    var buttons = document.getElementsByClassName("vnbButton");
+                    for (var x = 0; x < buttons.length; x++) {
+                        buttons[x].removeAttribute("disabled");
+                    }
             };
             if (window.scrollY < 800) {
+                //animation
                 document.getElementById("bumpUpLink").setAttribute("class", "panel panel-default bumpUpLink affix fadeOut");
                 document.getElementById("bumpUpLink").setAttribute("style", "opacity: 0;");
+                    //buttons being disabled
+                    var buttons = document.getElementsByClassName("vnbButton");
+                    for (var x = 0; x < buttons.length; x++) {
+                        buttons[x].setAttribute("disabled","disabled")
+                    }
             };
         }
+
 
         public getRandNumb(max, min) {
             return Math.floor((Math.random() * (max - min) + min));
@@ -160,10 +176,15 @@ namespace DNDCalcSecure.Controllers {
             var select = document.getElementById(link);
             select.scrollIntoView();
         }
+        public resetSubrace() {
+            this.selectedSubrace = "";
+        }
         public savedata() {
-            sessionStorage.setItem("char", this.class + "," + this.race + "," + this.selectedsubrace + "," + this.background);
+            sessionStorage.setItem("char", this.class + "," + this.race + "," + this.selectedSubrace + "," + this.background);
+            window.removeEventListener("scroll", this.scrollListener, false);
         }
         public showModal() {
+            this.tooltip.message = "";
             this.modalInstance = this.$uibModal.open({
                 templateUrl: 'ngApp/views/instructionsModal.html',
                 scope: this.$scope,
@@ -418,6 +439,7 @@ namespace DNDCalcSecure.Controllers {
         // STUPID STUPID HALF-ELF's
 
         public jumpTo(link) {
+            console.log(link);
             var select = document.getElementById(link);
             select.scrollIntoView();
         }

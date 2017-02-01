@@ -34,6 +34,9 @@ body {
         padding: 40px 0px 40px 0px;
     }
 }
+.vertNavBarDiv .btn[disabled]{
+    cursor:default;
+}
 .modal-open {
  overflow: auto;
 }
@@ -158,10 +161,10 @@ body {
 }
 @keyframes fadeout{
     from {
-        opacity: 1;
+        opacity:1;
     }
-    to {
-        opacity: 0;
+    to{
+        opacity:0;
     }
 }
 .socialProviders{
@@ -273,20 +276,39 @@ body {
   -webkit-transition: -webkit-transform .8s ease-in-out;
           transition:         transform .8s ease-in-out;
 }
-.spinIcon1:hover{
-      -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
 .spinIcon2{
     border-radius: 50%;
   -webkit-transition: -webkit-transform .8s ease-in-out;
           transition:         transform .8s ease-in-out;
 }
-.spinIcon2:hover{
+@media (pointer:course) {
+    .spinIcon2:active{
       -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
+    }
+    .spinIcon1:active{
+      -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+    }
+    #raceselect:active {
+    color:grey;
+}
+}
+@media (pointer:fine) {
+    .spinIcon2:hover{
+      -webkit-transform: rotate(-360deg);
+          transform: rotate(-360deg);
+    }
+    .spinIcon1:hover{
+      -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+    }
+    #raceselect:hover {
+    color:grey;
+}
 }
 .bumpUpLink{
+    display: inherit;
     right: 2%;
     font-size: 5vw;
     padding: 10px;
@@ -357,9 +379,7 @@ body {
 #raceselect {
     color: #232323;
 }
-#raceselect:hover {
-    color:grey;
-}
+
 .abilitylink {
     color: black;
 }
