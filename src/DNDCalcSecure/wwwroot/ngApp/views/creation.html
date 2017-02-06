@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div class="container"><br/>
     <div class="row" id="theform">
         <!--STARTING DIV-->
         <div class="col-xs-1 col-md-2">
@@ -11,68 +11,79 @@
                        uib-tooltip="{{controller.tooltip.message}}" tooltip-is-open="{{controller.tooltip.open}}" ng-click="controller.showModal()"></i>
                 </div> 
                 <div class="panel-body">
-                    <form method="get" action="/save" ng-submit="controller.savedata()" id="creationFormElement">
-                        <div class="form-group creationFormDiv">
-                            <label for="Class" class="formLabel"><a ng-click="controller.jumpTo(controller.class)"
-                              id="raceselect"><i class="fa fa-cog spinIcon1" ></i></a> Class</label>
-                            <select class="form-control creationFormInput" id="Class" ng-model="controller.class">
-                                <option title="Rage, Unarmored Defense">Barbarian</option>
-                                <option title="Bardic Inspiration, Spells">Bard</option>
-                                <option title="Divin Domain, Spells">Cleric</option>
-                                <option title="Druidic, Spells">Druid</option>
-                                <option title="Heal, Extra Action">Fighter</option>
-                                <option title="Martial Arts, Unarmored Defense">Monk</option>
-                                <option title="Heal, Divine Smight">Paladin</option>
-                                <option title="Favored Enemy, Natural Explorer">Ranger</option>
-                                <option title="Sneak Attack, Lockpicking">Rogue</option>
-                                <option title="Sorcerous Origin, Spells">Sorcerer</option>
-                                <option title="Otherworldy Patron, spells">Warlock</option>
-                                <option title="Cantrips, Spells">Wizard</option>
-                            </select>
-                        </div>
-                        <div class="form-group creationFormDiv">
-                            <label for="Race" class="formLabel"><a ng-click="controller.jumpTo(controller.race)"
-                             id="raceselect"><i class="fa fa-user-circle-o spinIcon2"></i></a> Race</label>
-                            <select class="form-control creationFormInput" id="Race" ng-model="controller.race" ng-change="controller.resetSubrace()">
-                                <option title="+2 Con">Dwarf</option>
-                                <option title="+2 Dex">Elf</option>
-                                <option title="+2 Dex">Halfling</option>
-                                <option title="+1 All">Human</option>
-                                <option title="+2 Str, +1 Cha">Dragonborn</option>
-                                <option title="+2 Int">Gnome</option>
-                                <option title="+2 Cha, +2 Player Choice">Half Elf</option>
-                                <option title="+2 Str, +1 Con">Half Orc</option>
-                                <option title="+1 Int, +2 Cha">Tiefling</option>
-                            </select>
-                        </div>
-                        <div class="form-group creationFormDiv">
-                            <label for="SubRace" class="formLabel"><a ng-click="controller.jumpTo(controller.selectedSubrace)" 
-                              id="raceselect"><i class="fa fa-user-circle spinIcon1"></i></a> Subrace</label>
-                            <select class="form-control creationFormInput" id="SubRace" ng-model="controller.selectedSubrace">
-                                <option title="{{item.title}}" ng-repeat="item in controller.subrace2 | filter: controller.race" >{{item.race}}</option>
-                            </select>
-                        </div>
-                        <div class="form-group creationFormDiv">
-                            <label for="Background" class="formLabel"><a ng-click="controller.jumpTo(controller.background)" 
-                             id="raceselect"><i class="fa fa-id-card-o spinIcon2"></i></a> Background </label>
-                            <select class="form-control creationFormInput" id="Background" ng-model="controller.background">
-                                <option title="Insight, Religion">Acolyte</option>
-                                <option title="Deception, Sleight of Hand">Charlatan</option>
-                                <option title="Deception, Stealth">Criminal</option>
-                                <option title="Acrobatics, Preformance">Entertainer</option>
-                                <option title="Animal Handling, Survival">Folk Hero</option>
-                                <option title="Insight, Persuasion">Guild Artisan</option>
-                                <option title="Medicine, Religion">Hermit</option>
-                                <option title="History, Persuasion">Noble</option>
-                                <option title="Athletics, Survival">Outlander</option>
-                                <option title="Arcana, History">Sage</option>
-                                <option title="Atheltics, Perception">Sailor</option>
-                                <option title="Athletics, Intimidation">Soldier</option>
-                                <option title="Sleight of Hand, Stealth">Urchin</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-info btn-lg btn-block" id="creationFormSubmit">Create</button>
-                    </form>
+                    <fieldset>
+                        <form ng-submit="controller.savedata()" id="creationFormElement" name="creationForm">
+                            <div class="form-group creationFormDiv">
+                                <label for="Class" class="formLabel">
+                                    <a ng-click="controller.jumpTo(controller.class)"
+                                       id="raceselect"><i class="fa fa-cog spinIcon1"></i></a> Class
+                                </label>
+                                <select class="form-control creationFormInput" id="Class" ng-model="controller.class" ng-required="true">
+                                    <option title="Rage, Unarmored Defense">Barbarian</option>
+                                    <option title="Bardic Inspiration, Spells">Bard</option>
+                                    <option title="Divin Domain, Spells">Cleric</option>
+                                    <option title="Druidic, Spells">Druid</option>
+                                    <option title="Heal, Extra Action">Fighter</option>
+                                    <option title="Martial Arts, Unarmored Defense">Monk</option>
+                                    <option title="Heal, Divine Smight">Paladin</option>
+                                    <option title="Favored Enemy, Natural Explorer">Ranger</option>
+                                    <option title="Sneak Attack, Lockpicking">Rogue</option>
+                                    <option title="Sorcerous Origin, Spells">Sorcerer</option>
+                                    <option title="Otherworldy Patron, spells">Warlock</option>
+                                    <option title="Cantrips, Spells">Wizard</option>
+                                </select>
+                            </div>
+                            <div class="form-group creationFormDiv">
+                                <label for="Race" class="formLabel">
+                                    <a ng-click="controller.jumpTo(controller.race)"
+                                       id="raceselect"><i class="fa fa-user-circle-o spinIcon2"></i></a> Race
+                                </label>
+                                <select class="form-control creationFormInput" id="Race" ng-model="controller.race"
+                                         ng-change="controller.resetSubrace()" ng-required="true">
+                                    <option title="+2 Con">Dwarf</option>
+                                    <option title="+2 Dex">Elf</option>
+                                    <option title="+2 Dex">Halfling</option>
+                                    <option title="+1 All">Human</option>
+                                    <option title="+2 Str, +1 Cha">Dragonborn</option>
+                                    <option title="+2 Int">Gnome</option>
+                                    <option title="+2 Cha, +2 Player Choice">Half Elf</option>
+                                    <option title="+2 Str, +1 Con">Half Orc</option>
+                                    <option title="+1 Int, +2 Cha">Tiefling</option>
+                                </select>
+                            </div>
+                            <div class="form-group creationFormDiv">
+                                <label for="SubRace" class="formLabel">
+                                    <a ng-click="controller.jumpTo(controller.selectedSubrace)"
+                                       id="raceselect"><i class="fa fa-user-circle spinIcon1"></i></a> Subrace
+                                </label>
+                                <select class="form-control creationFormInput" id="SubRace" ng-model="controller.selectedSubrace" ng-required="controller.subRequired">
+                                    <option title="{{item.title}}" ng-repeat="item in controller.subrace2 | filter: controller.race">{{item.race}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group creationFormDiv">
+                                <label for="Background" class="formLabel">
+                                    <a ng-click="controller.jumpTo(controller.background)"
+                                       id="raceselect"><i class="fa fa-id-card-o spinIcon2"></i></a> Background
+                                </label>
+                                <select class="form-control creationFormInput" id="Background" ng-model="controller.background" ng-required="true">
+                                    <option title="Insight, Religion">Acolyte</option>
+                                    <option title="Deception, Sleight of Hand">Charlatan</option>
+                                    <option title="Deception, Stealth">Criminal</option>
+                                    <option title="Acrobatics, Preformance">Entertainer</option>
+                                    <option title="Animal Handling, Survival">Folk Hero</option>
+                                    <option title="Insight, Persuasion">Guild Artisan</option>
+                                    <option title="Medicine, Religion">Hermit</option>
+                                    <option title="History, Persuasion">Noble</option>
+                                    <option title="Athletics, Survival">Outlander</option>
+                                    <option title="Arcana, History">Sage</option>
+                                    <option title="Atheltics, Perception">Sailor</option>
+                                    <option title="Athletics, Intimidation">Soldier</option>
+                                    <option title="Sleight of Hand, Stealth">Urchin</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-lg btn-block" id="creationFormSubmit" ng-disabled="creationForm.$invalid">Create</button>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>

@@ -35,6 +35,12 @@ namespace DNDCalcSecure.API
             return Ok(this.characterResource);
         }
 
+        [HttpGet("getUserCharacters")]
+        public IActionResult getUserCharacters()
+        {
+            return Ok((from d in db.Characters where d.Author.Equals(User.Identity.Name) select d).ToList());
+        }
+
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)

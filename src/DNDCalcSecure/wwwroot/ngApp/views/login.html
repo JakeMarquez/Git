@@ -32,7 +32,8 @@
                                 <input class="form-control logininput creationFormInput" name="password" type="password" ng-model="controller.loginUser.password" placeholder="Enter Password"
                                         style="text-align:center;" maxlength="20" ng-required="true" />
                             </div>
-                            <input class="btn btn-info btn-lg btn-block" type="submit" value="Login" id="loginbutton" ng-disabled="loginForm.$invalid" />
+                            <button class="btn btn-info btn-lg btn-block" type="submit" id="loginbutton" ng-disabled="loginForm.$invalid || controller.pending">
+                                <span ng-show="!controller.pending">Login</span><i class="fa fa-refresh fa-spin" ng-show="controller.pending"></i></button>
                         </form>
                             <div class="text-center largeText" id="registerMessage"><small>
                                 <span class="tableRow">Dont have an account?</span> <a href="/register">Register!</a></small></div>

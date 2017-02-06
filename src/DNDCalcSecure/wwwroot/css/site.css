@@ -14,6 +14,12 @@ body {
 .modal {
  overflow-y: auto;
 }
+.modal-content{
+    z-index: 2;
+}
+.tooltip{
+    z-index:1020;
+}
 .alert{
     margin-bottom: 10px;
 }
@@ -88,6 +94,22 @@ body {
     font-family: enchantedLand;
     font-size: 3em;
 }
+.panel-header-scaleable{
+    display: block;
+    cursor: default;
+    text-align: center;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: enchantedLand;
+    font-size: 3em;
+}
+@media only screen and (max-width: 1200px){
+    .panel-header-scaleable{
+        padding-top: .25em;
+        padding-bottom: .25em;
+        font-size: 2em;
+    }
+}
 .lowOpacity{
     opacity: .7;
 }
@@ -105,6 +127,9 @@ body {
     padding-bottom: 3%;
     padding-right: 3%;
     padding-left: 3%
+}
+.hide{
+    display: none;
 }
 .versionTable{
     font-size: 1.5em;
@@ -166,6 +191,9 @@ body {
     to{
         opacity:0;
     }
+}
+.btn-charSubmit:hover, .btn-charSubmit{
+    margin-top: 0!important;
 }
 .socialProviders{
     font-size: 2em;
@@ -309,9 +337,20 @@ body {
 }
 .bumpUpLink{
     display: inherit;
-    right: 2%;
+    right: 1%;
     font-size: 5vw;
     padding: 10px;
+}
+@media only screen and (max-width: 991px){
+    .bumpUpLink{
+        right:.5%;
+    }
+}
+
+@media only screen and (min-width: 551px){
+    .vnbButton{
+        font-size: 1em !important;
+    }
 }
 #classtitle, #classproficiencies{
        background-color: #e6ffa7;
@@ -392,6 +431,10 @@ body {
 }
 .abilitySwapTable td{
     width: 16.6%;
+}
+.abilityScoreMods td{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 #loginerrors {
     list-style-type:none;
@@ -502,6 +545,10 @@ textarea {
 #trait1:hover, #trait2:hover, #trait3:hover, #trait4:hover, #trait5:hover, #trait6:hover {
     text-decoration:none;
 }
+#potentialStrMod, #potentialDexMod, #potentialConMod, #potentialWisMod, #potentialIntMod {
+    background: white;
+    font-weight:bold;
+}
 
 #potentialStrMod:active:after, #potentialDexMod:active:after, #potentialConMod:active:after, #potentialWisMod:active:after, #potentialIntMod:active:after {
     display:none;
@@ -539,9 +586,13 @@ textarea {
 #loginbutton {
     margin-top: 10px;
 }
+.loggedInUser, #loggedInUser{
+    font-size:1.2em;
+    cursor: default;
+}
 #loggedInUser{
-    margin-top: 4px;
-    color: black;
+    color: #1984ae;
+    font-weight: bold;
 }
 #characterListPanel{
     margin-bottom: 0px !important;
@@ -554,11 +605,18 @@ textarea {
     background-color: #f4ffbd;
 }
 .tipText{
-    font-size: 1.5vw;
+    font-size: 1em;
 }
 @media only screen and (max-width: 551px){
     .tipText{
-        font-size: 12px;
+        font-size: .8em;
+    }
+    .versionTable{
+        font-size: 1em;
+    }
+    .latestHeroStatblock{
+        padding-top: .5em;
+        padding-bottom: .5em;
     }
 }
 .subscript{
@@ -570,6 +628,11 @@ textarea {
 #adventureQuote{
     margin-top: 3px;
     cursor: default;
+}
+@media (min-width: 768px) {
+    #adventureQuote{
+        font-size: 1em !important;
+    }
 }
 #Barbarian, #Bard, #Cleric, #Druid, #Fighter, #Monk, #Ranger, #Rogue, #Paladin, #Sorcerer, #Warlock, #Wizard,
 #Dwarf, #Elf, .HalfElf, #Halfling, #Gnome, .HalfOrc, #Tiefling, #Acolyte, #Charlatan, #Criminal, #Entertainer,
@@ -598,11 +661,46 @@ textarea {
     font-size: 2em;
     text-align: center;
 }
+.latestHeroRaceClass{
+    font-size: .8em;
+}
 
 /*#navhighlight:hover {
     display: inline;
     color: #fff3b2;
 }*/
+#whatsNewPanel, #characterListPanel, #latestHerosPanel{
+    border-bottom-width: 1px;
+}
+
+
+.parallax1{
+    background-image: url("/images/parallax1.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+}
+.parallax2{
+    background-image: url("/images/parallax2.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+}
+.parallax3{
+    background-image: url("/images/parallax3.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+}
+.myCharacterRow{
+    padding: 3%;
+}
 
 /*dungeon master page*/
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {

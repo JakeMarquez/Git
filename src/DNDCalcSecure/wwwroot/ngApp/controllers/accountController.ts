@@ -44,6 +44,7 @@ namespace DNDCalcSecure.Controllers {
         public loginUser;
         public validationMessages;
         public stateActive;
+        public pending = false;
         public icons = {
             "Microsoft": "fa fa-windows",
             "Twitter": "fa fa-twitter-square",
@@ -55,9 +56,11 @@ namespace DNDCalcSecure.Controllers {
         }
 
         public login() {
+            this.pending = true;
             this.accountService.login(this.loginUser).then(() => {
                 this.$location.path('/');
             }).catch((results) => {
+                this.pending = false;
                 this.validationMessages = results;
             });
         }
@@ -83,11 +86,14 @@ namespace DNDCalcSecure.Controllers {
     export class RegisterController {
         public registerUser;
         public validationMessages;
+        public pending = false;
 
         public register() {
+            this.pending = true;
             this.accountService.register(this.registerUser).then(() => {
                 this.$location.path('/');
             }).catch((results) => {
+                this.pending = false;
                 this.validationMessages = results;
             });
         }
@@ -108,20 +114,21 @@ namespace DNDCalcSecure.Controllers {
     export class ExternalRegisterController {
         public registerUser;
         public validationMessages;
+        public pending = false;
 
         public register() {
+            this.pending = true;
             this.accountService.registerExternal(this.registerUser)
                 .then((result) => {
                     this.$location.path('/');
                 }).catch((result) => {
                     this.validationMessages = result;
+                    this.pending = false;
                 });
         }
 
         public closeValidation(index) {
-            console.log(index);
             this.validationMessages.splice(index, 1);
-            console.log(this.validationMessages);
         }
 
         constructor(private accountService: DNDCalcSecure.Services.AccountService, private $location: ng.ILocationService) {}

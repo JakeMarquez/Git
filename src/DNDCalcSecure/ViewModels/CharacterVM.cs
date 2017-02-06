@@ -42,6 +42,7 @@ namespace DNDCalcSecure.ViewModels
             var results = new List<ValidationResult>();
             //var spacesRegex = new Regex("/([ ])+/g");
             //var illegalRegex = new Regex("/([^A-z ])/g");
+            var fRegex = new Regex("[^A-z0-9]");
 
             if (String.IsNullOrWhiteSpace(this.Name)) // Null Check
             {
@@ -63,6 +64,10 @@ namespace DNDCalcSecure.ViewModels
                 || (this.Name).ToUpper().Contains("DILDO"))
             {
                 results.Add(new ValidationResult("Names cannot include swear words!", new string[] { "Name" }));
+            }
+            if (fRegex.IsMatch(this.Name))
+            {
+                results.Add(new ValidationResult("Names cannot include special characters!", new string[] { "Name" }));
             }
 
             return results;

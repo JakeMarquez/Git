@@ -19,5 +19,10 @@ namespace DNDCalcSecure.Services
         {
             return this.db.Characters.ToList();
         }
+
+        public IList<Character> listUserCharacters(string userName)
+        {
+            return (from d in db.Characters where d.Author.Equals(userName) select d).ToList();
+        }
     }
 }

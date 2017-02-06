@@ -1,5 +1,6 @@
 namespace DNDCalcSecure.Services {
     export class DndService {
+        public characterAPI;
         public characterResource;
         public getQuote(id) {
             if (id == 0) {
@@ -60,6 +61,10 @@ namespace DNDCalcSecure.Services {
             });
         }
 
+        public getUserCharacters() {
+            return this.$http.get('/api/characters/getUserCharacters');
+        }
+
         private flattenValidation(modelState) {
             let messages = [];
             for (let prop in modelState) {
@@ -86,7 +91,7 @@ namespace DNDCalcSecure.Services {
                     private $q: ng.IQService,
                     private $http: ng.IHttpService,
                     private $window: ng.IWindowService) {
-            this.characterResource = $resource('/api/characters/:id');
+            this.characterResource = $resource('/api/characters/:id').query();
         }
     }
     angular.module("DNDCalcSecure").service("dndService", DndService);

@@ -4,20 +4,24 @@ namespace DNDCalcSecure.Controllers {
         public message;
         public dndResource;
         public abilityTitles = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
-        public dynamicPopover = {
-            title : "cool stuff",
-            content: "even cooler stuff"
-        }
         public parseAbilityScores(num, index) {
             var scores = this.dndService.parseAbilityScores(num);
             return scores[index];
         }
+
         public getRandNumb(max, min) {
             return Math.floor((Math.random() * (max - min) + min));
         }
+
         constructor(public dndService: DNDCalcSecure.Services.DndService, accountService: DNDCalcSecure.Services.AccountService) {
-            this.dndResource = dndService.characterResource.query();
-            this.message = dndService.getQuote(this.getRandNumb(0,4));
+            this.dndResource = dndService.characterResource;
+            this.message = dndService.getQuote(this.getRandNumb(0, 4));
+            if (this.message.text.length > 50) {
+                document.getElementById("adventureQuote").setAttribute("style", "font-size: 2vw;");
+            };
+            if (this.message.text.length > 85) {
+                document.getElementById("adventureQuote").setAttribute("style", "font-size: 1.5vw;");
+            };
         }
     }
 
@@ -42,7 +46,8 @@ namespace DNDCalcSecure.Controllers {
         }
 
         constructor(public dndService: DNDCalcSecure.Services.DndService, accountService: DNDCalcSecure.Services.AccountService) {
-            this.secrets = dndService.characterResource.query();
+            dndService.getUserCharacters().then((result) => { this.secrets = result.data;});
+            console.log(this.secrets);
         }
         public isactive = true;
         public savefunction(item) {
@@ -55,7 +60,10 @@ namespace DNDCalcSecure.Controllers {
     export class DungeonController {
 
         constructor(public dmService: DNDCalcSecure.Services.DmService) {
-
+            //window.onbeforeunload = function () {
+            //    alert("are you sure you want to leave?"); 
+            //    return false;
+            //}
         }
 
         public hpGenerator(num) {
@@ -131,16 +139,21 @@ namespace DNDCalcSecure.Controllers {
         public selectedSubrace;
         public tooltip = { open: false, message: "" };
         public scrollListener;
+        public formComplete;
+        public validationMessages;
+        public subRequired = true;
 
         constructor(public dndService: DNDCalcSecure.Services.DndService,
             private $uibModal: angular.ui.bootstrap.IModalService,
-            private $scope: angular.IScope) {
+            private $scope: angular.IScope,
+            private $state: angular.ui.IStateService) {
             this.subraceTitles = ["+1 Wiz", "+2 Str", "+1 Str", "+1 Wiz", "+1 Int", "+1 Dex", "+1 Dex", "+1 Cha", "+1 Con"];
             this.subrace2.push({ race: "Hill Dwarf", title: "+1 Wiz" }, { race: "Mountain Dwarf", title: "+2 Str" }, { race: "Gray Dwarf", title: "+1 Str" }, { race: "Wood Elf", title: "+1 Wiz" }, { race: "High Elf", title: "+1 Int" }, { race: "Deep Gnome", title: "+1 Dex" }, { race: "Forest Gnome", title: "+1 Dex" }, { race: "Lightfoot Halfling", title: "+1 Cha" }, { race: "Stout Halfling", title: "+1 Con" });
             let rand = this.getRandNumb(0, 4);
             this.Quote = dndService.getQuote(rand);
             if (this.dndService.newUser()) { this.tooltip.open = true; this.tooltip.message = "Click Me!" };
             this.scrollListener = window.addEventListener("scroll", this.scrollEvent, false);
+            this.scrollEvent();
         };
 
 
@@ -175,18 +188,27 @@ namespace DNDCalcSecure.Controllers {
         public jumpTo(link) {
             var select = document.getElementById(link);
             select.scrollIntoView();
+            this.scrollEvent();
         }
+        
         public resetSubrace() {
             this.selectedSubrace = "";
+            if (this.race != "Elf" && this.race != "Dwarf" && this.race != "Halfling" && this.race != "Gnome") {
+                this.subRequired = false;
+                return;
+            }
+                this.subRequired = true;
         }
+
         public savedata() {
             sessionStorage.setItem("char", this.class + "," + this.race + "," + this.selectedSubrace + "," + this.background);
-            window.removeEventListener("scroll", this.scrollListener, false);
+            window.removeEventListener("scroll", this.scrollEvent, false);
+            this.$state.go('save');
         }
+
         public showModal() {
-            this.tooltip.message = "";
             this.modalInstance = this.$uibModal.open({
-                templateUrl: 'ngApp/views/instructionsModal.html',
+                templateUrl: 'ngApp/views/modals/instructionsModal.html',
                 scope: this.$scope,
                 animation: true,
                 size: 'md'
@@ -199,6 +221,7 @@ namespace DNDCalcSecure.Controllers {
 
     export class SaveController {
         public validationMessages;
+        public pending = false;
         public createdCharacter; // class, race, subrace, background
         public characterName;
         public characterProficiencies;
@@ -216,6 +239,7 @@ namespace DNDCalcSecure.Controllers {
         public subracialMods = [];
         public classProficiencies = [];
         public additionalProficiencies = [];
+        public abilityModifierReference = [];
         public modalInstance;
         public tooltip = { open: false, message: "" };
 
@@ -229,6 +253,8 @@ namespace DNDCalcSecure.Controllers {
         public trait4 = this.getRandNumb(5, 18);
         public trait5 = this.getRandNumb(5, 18);
         public trait6 = this.getRandNumb(5, 18);
+
+        public abMods = ["","","","","",""];
 
         public traitswap = { 'clicked': false, 'trait': "" };
         public traitswap2 = { 'clicked': false, 'trait': "" };
@@ -254,6 +280,34 @@ namespace DNDCalcSecure.Controllers {
             document.getElementById(this.traitswap.trait).innerText = swapped;
             this.traitswap.clicked = false; this.traitswap.trait = "";
             this.traitswap2.clicked = false; this.traitswap2.trait = "";
+            this.abScoreUpdate();
+        }
+
+        public abScoreUpdate() {
+            this.trait1 = parseInt(document.getElementById("trait1").innerHTML);
+            this.trait2 = parseInt(document.getElementById("trait2").innerHTML);
+            this.trait3 = parseInt(document.getElementById("trait3").innerHTML);
+            this.trait4 = parseInt(document.getElementById("trait4").innerHTML);
+            this.trait5 = parseInt(document.getElementById("trait5").innerHTML);
+            this.trait6 = parseInt(document.getElementById("trait6").innerHTML);
+            this.abModifierUpdate();
+        }
+
+        public abModifierUpdate() {
+            let abArray = [this.STR, this.DEX, this.CON, this.INT, this.WIS, this.CHA];
+            let abArray2 = [this.trait1, this.trait2, this.trait3, this.trait4, this.trait5, this.trait6];
+            for (var x = 0; x < 6; x++) {
+                var sum = parseInt(abArray[x]) + abArray2[x];
+                if (abArray[x] == "") { sum = abArray2[x] }
+                if (sum > 9){
+                    this.abMods[x] = "+" + this.abilityModifierReference[sum].toString();
+                };
+                if (sum <= 9) {
+                    this.abMods[x] = "-" + this.abilityModifierReference[sum].toString();
+                }
+                var title = "abMod" + x.toString();
+                document.getElementById(title).innerHTML = this.abMods[x];
+            }
         }
 
         //ABILITY SCORE GENERATOR
@@ -331,6 +385,7 @@ namespace DNDCalcSecure.Controllers {
         };
 
         public save() {
+            this.pending = true;
             console.log(this.checkBoxValue);
             var str = this.bonusCheck(this.STR);
             var dex = this.bonusCheck(this.DEX)
@@ -366,6 +421,7 @@ namespace DNDCalcSecure.Controllers {
                 window.sessionStorage.removeItem('char');
                 this.$state.go('home');
             }).catch((results) => {
+                this.pending = false;
                 this.validationMessages = results;
             });
         }
@@ -387,9 +443,14 @@ namespace DNDCalcSecure.Controllers {
         // STUPID STUPID HALF-ELF's
         public potentialMods = []
         public halfElfsAreStupid() {
-            let message = document.getElementById('optionalMessage'); //.innerText = "Half Elfs get 2 additional attribute points of their choice. Choose Wisely, you only get one chance!";
-           message.innerText = "Half Elfs get 2 additional ability points of their choice. Choose Wisely!";
+                debugger;
+            this.showModalHalfElf();
             this.potentialMods.push("+1", "+1", "+1", "+1", "+1");
+            for (var x = 0; x < 5; x++) {
+                let elements = document.getElementsByName("potentialMod");
+                elements[x].className += "badge";
+            }
+            debugger;
         }
         public traitCap() {
             if (this.addTraitCounter == 2) {
@@ -422,15 +483,15 @@ namespace DNDCalcSecure.Controllers {
                 this.traitCap();
             }
             if (id == 3) {
-                this.WIS = "+1";
-                this.addTraitCounter += 1;
-                document.getElementById('potentialWisMod').style.display = 'none';
-                this.traitCap();
-            }
-            if (id == 4) {
                 this.INT = "+1";
                 this.addTraitCounter += 1;
                 document.getElementById('potentialIntMod').style.display = 'none';
+                this.traitCap();
+            }
+            if (id == 4) {
+                this.WIS = "+1";
+                this.addTraitCounter += 1;
+                document.getElementById('potentialWisMod').style.display = 'none';
                 this.traitCap();
             }
 
@@ -447,7 +508,7 @@ namespace DNDCalcSecure.Controllers {
         // MODAL
         public showModal() {
             this.modalInstance = this.$uibModal.open({
-                templateUrl: 'ngApp/views/instructionsModal2.html',
+                templateUrl: 'ngApp/views/modals/instructionsModal2.html',
                 scope: this.$scope,
                 animation: true,
                 size: 'md'
@@ -456,11 +517,31 @@ namespace DNDCalcSecure.Controllers {
 
         public showModalProficiencies() {
             this.modalInstance = this.$uibModal.open({
-                templateUrl: 'ngApp/views/proficiencyModal.html',
+                templateUrl: 'ngApp/views/modals/proficiencyModal.html',
                 scope: this.$scope,
                 animation: true,
                 size: 'md'
                 });
+        }
+
+        public showModalHalfElf() {
+            this.modalInstance = this.$uibModal.open({
+                templateUrl: 'ngApp/views/modals/halfElfModal.html',
+                scope: this.$scope,
+                animation: true,
+                backdrop: 'static',
+                size: 'md'
+            });
+        }
+
+        public showModalSubmit() {
+            this.modalInstance = this.$uibModal.open({
+                templateUrl: 'ngApp/views/modals/characterSubmitModal.html',
+                scope: this.$scope,
+                animation: true,
+                backdrop: 'static',
+                size: 'sm'
+            });
         }
 
         public close() {
@@ -482,9 +563,12 @@ namespace DNDCalcSecure.Controllers {
             this.class = this.createdCharacter[0];
             this.background = this.createdCharacter[3];
             this.title = this.createdCharacter[2].toString().trim();
-            if (this.createdCharacter[2] == 'undefined') { this.title = this.createdCharacter[1] };
+            if (this.createdCharacter[2] == 'undefined' || this.createdCharacter[2] == '') { this.title = this.createdCharacter[1] };
+            var potentialMods = document.getElementsByClassName("potentialMod");
+            for (var x; x < 5; x++) { potentialMods[x].setAttribute("style", "display:none;") };
             if (this.title == "Half Elf") { this.halfElfsAreStupid(); };
             console.log(this.subrace);
+            this.abilityModifierReference.push([5], [4], [4], [3], [3], [2], [2], [1], [1], [0], [0], [1], [1], [2], [2], [3], [3], [4], [4], [5], [5]);
             this.subracialMods.push(
                 { race: "Human", mods: "1STR,1DEX,1CON,1INT,1WIS,1CHA", Proficiencies: "1 Skill of your choice", Abilities: "none :(" },
                 { race: "Wood Elf", mods: "2DEX,1WIS", Proficiencies: "Longsword, Shortsword, Shortbow, Longbow, Perception", Abilities: "35ft Base Speed, Can attempt to hide while lightly obscured" },
@@ -561,6 +645,7 @@ namespace DNDCalcSecure.Controllers {
                     }
                 };
             }; // Racial Mods Loop
+            this.abModifierUpdate();
         }
     }
 

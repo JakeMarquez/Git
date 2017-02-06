@@ -1,4 +1,4 @@
-﻿<div class="container">
+﻿<div class="container"><br/>
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="text-center">
-                        <h2 class="panel-header">
+                        <h2 class="panel-header-scaleable">
                             <span>{{controller.title}}</span>
                             <span>{{controller.createdCharacter[0]}}</span>
                             <span>{{controller.createdCharacter[3]}}</span>
@@ -26,47 +26,57 @@
                                     <td class="strColor opacityHover" ng-click="controller.jumpTo('Strength')"><span class="abilityScoreSwapDisplay">Str</span></td>
                                     <td class="dexColor opacityHover" ng-click="controller.jumpTo('Dexterity')"><span class="abilityScoreSwapDisplay" >Dex</span></td>
                                     <td class="conColor opacityHover" ng-click="controller.jumpTo('Constitution')"><span class="abilityScoreSwapDisplay" >Con</span></td>
-                                    <td class="intColor opacityHover" ng-click="controller.jumpTo('Wisdom')"><span class="abilityScoreSwapDisplay" >Int</span></td>
-                                    <td class="wisColor opacityHover" ng-click="controller.jumpTo('Intelligence')"><span class="abilityScoreSwapDisplay" >Wis</span></td>
+                                    <td class="intColor opacityHover" ng-click="controller.jumpTo('Intelligence')"><span class="abilityScoreSwapDisplay" >Int</span></td>
+                                    <td class="wisColor opacityHover" ng-click="controller.jumpTo('Wisdom')"><span class="abilityScoreSwapDisplay" >Wis</span></td>
                                     <td class="chaColor opacityHover" ng-click="controller.jumpTo('Charisma')"><span class="abilityScoreSwapDisplay" >Cha</span><br /></td>
                                 </tr>
                                 <tr class="abilityScoreSwapDisplay abilitySwapTable">
                                     <td class="strColor" id="td_trait1">
                                         <span title="STR"><a ng-click="controller.firstclick('trait1')" id="trait1" href="#">{{controller.trait1}}</a></span>
-                                        <span id="strength"></span><span id="racialmod" class="badge">{{controller.STR}}</span><span id="potentialStrMod"><a ng-click="controller.addTrait(0)">{{controller.potentialMods[0]}}</a></span>
+                                        <span id="strength"></span><span id="racialmod" class="badge">{{controller.STR}}</span><span id="potentialStrMod" name="potentialMod"><a ng-click="controller.addTrait(0)">{{controller.potentialMods[0]}}</a></span>
                                     </td>
                                     <td class="dexColor" id="td_trait2">
                                         <span title="DEX" ><a ng-click="controller.firstclick('trait2')" id="trait2" href="#">{{controller.trait2}}</a></span>
-                                        <span id="dexterity"></span><span id="racialmod" class="badge">{{controller.DEX}}</span><span id="potentialDexMod"><a ng-click="controller.addTrait(1)">{{controller.potentialMods[1]}}</a></span>
+                                        <span id="dexterity"></span><span id="racialmod" class="badge">{{controller.DEX}}</span><span id="potentialDexMod" name="potentialMod"><a ng-click="controller.addTrait(1)">{{controller.potentialMods[1]}}</a></span>
                                     </td>
                                     <td class="conColor" id="td_trait3">
                                         <span title="CON" ><a ng-click="controller.firstclick('trait3')" id="trait3" href="#">{{controller.trait3}}</a></span>
-                                        <span id="constitution"></span><span id="racialmod" class="badge">{{controller.CON}}</span><span id="potentialConMod"><a ng-click="controller.addTrait(2)">{{controller.potentialMods[2]}}</a></span>
+                                        <span id="constitution"></span><span id="racialmod" class="badge">{{controller.CON}}</span><span id="potentialConMod" name="potentialMod"><a ng-click="controller.addTrait(2)">{{controller.potentialMods[2]}}</a></span>
                                     </td>
                                     <td class="intColor" id="td_trait4">
                                         <span title="INT" ><a ng-click="controller.firstclick('trait4')" id="trait4" href="#">{{controller.trait4}}</a></span>
-                                        <span id="intelligence"></span><span id="racialmod" class="badge">{{controller.INT}}</span><span id="potentialIntMod"><a ng-click="controller.addTrait(3)">{{controller.potentialMods[3]}}</a></span>
+                                        <span id="intelligence"></span><span id="racialmod" class="badge">{{controller.INT}}</span><span id="potentialIntMod" name="potentialMod"><a ng-click="controller.addTrait(3)">{{controller.potentialMods[3]}}</a></span>
                                     </td>
                                     <td class="wisColor" id="td_trait5">
                                         <span title="WIS" ><a ng-click="controller.firstclick('trait5')" id="trait5" href="#">{{controller.trait5}}</a></span>
-                                        <span id="wisdom"></span><span id="racialmod" class="badge">{{controller.WIS}}</span><span id="potentialWisMod"><a ng-click="controller.addTrait(4)">{{controller.potentialMods[4]}}</a></span>
+                                        <span id="wisdom"></span><span id="racialmod" class="badge">{{controller.WIS}}</span><span id="potentialWisMod" name="potentialMod"><a ng-click="controller.addTrait(4)">{{controller.potentialMods[4]}}</a></span>
                                     </td>
                                     <td class="chaColor" id="td_trait6">
                                         <span title="CHA" ><a ng-click="controller.firstclick('trait6')" id="trait6" href="#">{{controller.trait6}}</a></span>
                                         <span id="charisma"></span><span id="racialmod" class="badge">{{controller.CHA}}</span><span id="potentialChaMod"><a ng-click="controller.addTrait(5)">{{controller.potentialMods[5]}}</a></span>
                                     </td>
                                 </tr>
+                                <tr class="abilityScoreMods lowOpacity">
+                                    <td id="abMod0" class="strColor"></td>
+                                    <td id="abMod1" class="dexColor"></td>
+                                    <td id="abMod2" class="conColor"></td>
+                                    <td id="abMod3" class="intColor"></td>
+                                    <td id="abMod4" class="wisColor"></td>
+                                    <td id="abMod5" class="chaColor"></td>
+                                </tr>
                             </tbody>
                         </table>
                         <p id="optionalMessage"></p>
                     </div>
                     <div class="text-center tipText">
-                        <p>Tip: as a {{controller.createdCharacter[0]}} you should have high scores in {{controller.primaryAbilities(controller.createdCharacter[0])}}.</p>
+                        <p><strong>Tip: as a {{controller.createdCharacter[0]}} you should have high scores in {{controller.primaryAbilities(controller.createdCharacter[0])}}.</strong></p>
                     </div>
                     <div>
-                        <form class="form-inline noMarginBottom" ng-submit="controller.save()">
-                            <input placeholder="Character Name" id="newCharacterNameInput" class="form-control" ng-model="controller.characterName" />
-                            <button type="submit" class="btn btn-info btn-lg btn-block" id="saveFormSubmit">Save</button>
+                        <form class="form-inline noMarginBottom" ng-submit="controller.showModalSubmit()">
+                            <input placeholder="Character Name" id="newCharacterNameInput" class="form-control" ng-model="controller.characterName" maxlength="15" autocomplete="off"/>
+                            <button type="submit" class="btn btn-info btn-lg btn-block" id="saveFormSubmit" ng-disabled="controller.pending">
+                            <span ng-show="!controller.pending">Save</span><i class="fa fa-refresh fa-spin" ng-show="controller.pending"></i>
+                            </button>
                         </form>
                         <!--<input type="checkbox" ng-model="controller.checkBoxValue" />
                         <b>Auto-Fill</b></br></br>-->
@@ -83,7 +93,7 @@
                              <dd>{{controller.subraceabilities}}</dd>
                        </dl>-->
 
-                       <table class="table table-hover">
+                       <table class="table">
                            <tbody>
                                <tr>
                                    <td class="proficiencyTableLabel">{{controller.title}}</td>
@@ -108,7 +118,7 @@
                 <div class="panel-body largeText smallPadding">
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="strength">Strength</mark></strong>
+                            <strong><mark id="Strength">Strength</mark></strong>
                         </div>
                         <div class="text-justify">
                             Strength measures bodily power,
@@ -121,7 +131,7 @@
                     </div>
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="dexterity">Dexterity</mark></strong>
+                            <strong><mark id="Dexterity">Dexterity</mark></strong>
                         </div>
                         <div class="text-justify">
                             Dexterity measures your character's physical agility,
@@ -138,7 +148,7 @@
                     </div>
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="constitution">Constitution</mark></strong>
+                            <strong><mark id="Constitution">Constitution</mark></strong>
                         </div>
                         <div class="text-justify">
                             Constitution measures your health and durability.
@@ -149,7 +159,7 @@
                     </div>
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="wisdom">Wisdom</mark></strong>
+                            <strong><mark id="Wisdom">Wisdom</mark></strong>
                         </div>
                         <div class="text-justify">
                             Wisdom reflects how attuned you are to your surroundings,
@@ -162,7 +172,7 @@
                     </div>
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="intelligence">Intelligence</mark></strong>
+                            <strong><mark id="Intelligence">Intelligence</mark></strong>
                         </div>
                         <div class="text-justify">
                             Intelligence describes your mental acuity, your education, and your ability to reason,
@@ -174,7 +184,7 @@
                     </div>
                     <div class="row classInformation">
                         <div class="creationInformationTableLabel">
-                            <strong><mark id="charisma">Charisma</mark></strong>
+                            <strong><mark id="Charisma">Charisma</mark></strong>
                         </div>
                         <div class="text-justify">
                             Charisma measures your ability to influence others and the strength of your personality.

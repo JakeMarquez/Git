@@ -11,6 +11,9 @@
 <body ng-controller="AccountController as account">
     <div class="container" id="top">
         <center>
+            <div ng-show="account.isLoggedIn()" class="loggedInUser">
+                Logged in as <span id="loggedInUser">[{{account.getUserName()}}]</span>
+            </div>
             <a href="/"><img src="~/images/logo.png" width="175" id="bannerLink"/></a><br />
                 @*NAVBAR*@
             <span ng-show="account.isLoggedIn()">
@@ -21,9 +24,6 @@
             </span> 
             <a href="/login" id="loginLink" class="navlink" ng-show="!account.isLoggedIn()"><mark class="navhighlight">Login</mark></a>
             <a href="#" class="navlink" ng-click="account.logout()" ng-show="account.isLoggedIn()"><mark class="navhighlight">Logout</mark></a>
-            <div ng-show="account.isLoggedIn()" id="loggedInUser">
-                [{{account.getUserName()}}]
-            </div>
         </center>
         @*<br/>*@
         <ui-view></ui-view>
